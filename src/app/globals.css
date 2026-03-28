@@ -7,18 +7,49 @@
   --accent-hover: #1d4ed8;
   --surface: #f9fafb;
   --code-bg: #1e1e1e;
+
+  /* Tag category colors */
+  --tag-typescript: #3b82f6;
+  --tag-backend: #22c55e;
+  --tag-api: #14b8a6;
+  --tag-css-design: #a855f7;
+  --tag-dev-growth: #f97316;
+  --tag-frontend: #ec4899;
+  --tag-default: #6b7280;
+
+  /* Card glow */
+  --card-border: rgba(99, 102, 241, 0.12);
+  --card-glow: rgba(99, 102, 241, 0.06);
+
+  /* Ghost button */
+  --ghost-border: rgba(0, 0, 0, 0.2);
+  --ghost-hover-border: rgba(0, 0, 0, 0.4);
+  --ghost-hover-bg: rgba(0, 0, 0, 0.05);
+
+  /* Radius system */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-full: 9999px;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #0b0d17;
     --foreground: #ededed;
     --muted: #9ca3af;
-    --border: #27272a;
+    --border: #1e2035;
     --accent: #60a5fa;
     --accent-hover: #93bbfd;
-    --surface: #18181b;
+    --surface: #131525;
     --code-bg: #1e1e1e;
+
+    --card-border: rgba(99, 102, 241, 0.15);
+    --card-glow: rgba(99, 102, 241, 0.08);
+
+    --ghost-border: rgba(255, 255, 255, 0.2);
+    --ghost-hover-border: rgba(255, 255, 255, 0.4);
+    --ghost-hover-bg: rgba(255, 255, 255, 0.05);
   }
 }
 
