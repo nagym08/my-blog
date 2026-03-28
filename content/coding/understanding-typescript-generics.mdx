@@ -1,0 +1,71 @@
+---
+title: "Understanding TypeScript Generics"
+excerpt: "A practical guide to TypeScript generics — from basic syntax to real-world patterns that make your code more reusable."
+category: "coding"
+tags: ["typescript", "generics", "tutorial"]
+coverImage: "/images/posts/ts-generics.jpg"
+publishedAt: "2026-03-15"
+status: "published"
+---
+
+TypeScript generics let you write functions, classes, and types that work with **any type** while still preserving type safety. Instead of using `any` and losing type information, generics let the caller decide what type to use.
+
+## The Problem
+
+Consider a simple identity function:
+
+```typescript
+function identity(value: any): any {
+  return value;
+}
+```
+
+This works, but we've lost all type information. The return type is `any`, so TypeScript can't help us downstream.
+
+## The Generic Solution
+
+```typescript
+function identity<T>(value: T): T {
+  return value;
+}
+
+const result = identity("hello"); // result is string
+const num = identity(42);         // num is number
+```
+
+Now TypeScript **infers** the type from what we pass in. No type information lost.
+
+## Constraining Generics
+
+Sometimes you need to restrict what types are allowed:
+
+```typescript
+function getLength<T extends { length: number }>(item: T): number {
+  return item.length;
+}
+
+getLength("hello");    // OK — string has .length
+getLength([1, 2, 3]);  // OK — array has .length
+getLength(42);          // Error — number has no .length
+```
+
+## Real-World Pattern: API Response Wrapper
+
+```typescript
+interface ApiResponse<T> {
+  data: T;
+  status: number;
+  timestamp: Date;
+}
+
+async function fetchApi<T>(url: string): Promise<ApiResponse<T>> {
+  const res = await fetch(url);
+  const data: T = await res.json();
+  return { data, status: res.status, timestamp: new Date() };
+}
+
+const users = await fetchApi<User[]>("/api/users");
+// users.data is User[]
+```
+
+Generics are one of those features that feel abstract until you start using them — then you wonder how you ever wrote TypeScript without them.

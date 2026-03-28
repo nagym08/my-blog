@@ -1,0 +1,14 @@
+.section {
+  margin-bottom: 2rem;
+}
+
+.heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.empty {
+  color: var(--muted);
+  padding: 2rem 0;
+}

@@ -1,12 +1,24 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --surface: #f9fafb;
+  --code-bg: #1e1e1e;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --muted: #9ca3af;
+    --border: #27272a;
+    --accent: #60a5fa;
+    --accent-hover: #93bbfd;
+    --surface: #18181b;
+    --code-bg: #1e1e1e;
   }
 }
 
@@ -38,12 +50,22 @@ body {
 }
 
 a {
-  color: inherit;
+  color: var(--accent);
   text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
+  }
+}
+
+@media (max-width: 640px) {
+  body {
+    font-size: 0.9375rem;
   }
 }

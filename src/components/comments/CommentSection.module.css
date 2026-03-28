@@ -1,0 +1,23 @@
+.section {
+  margin-top: 3rem;
+  border-top: 1px solid var(--border);
+  padding-top: 2rem;
+}
+
+.heading {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.signInPrompt {
+  color: var(--muted);
+  font-size: 0.9375rem;
+  margin-bottom: 1.5rem;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}

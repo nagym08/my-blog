@@ -1,0 +1,51 @@
+---
+title: "React Server Components Explained"
+excerpt: "What React Server Components actually are, how they differ from SSR, and when to use them."
+category: "coding"
+tags: ["react", "server-components", "next.js"]
+publishedAt: "2026-03-20"
+status: "published"
+---
+
+React Server Components (RSC) are **not** server-side rendering. They're a fundamentally different model for how React components execute. Let's break it down.
+
+## SSR vs RSC
+
+**SSR** renders your components to HTML on the server, then ships all the JavaScript to the client so React can "hydrate" and make things interactive. Every component still runs on both server *and* client.
+
+**RSC** components run *only* on the server. Their JavaScript is never sent to the browser. The server sends a serialized representation of the rendered output — not the component code itself.
+
+## Why This Matters
+
+1. **Zero bundle size** — Server Components don't add to your JavaScript bundle
+2. **Direct backend access** — Query databases, read files, call internal APIs without an API layer
+3. **Streaming** — Results can stream to the client as they become available
+
+## When to Use Each
+
+| Use Server Components for | Use Client Components for |
+|---|---|
+| Data fetching | Interactivity (onClick, onChange) |
+| Backend access | Browser APIs (localStorage, etc.) |
+| Static content | State management (useState, useReducer) |
+| Large dependencies | Real-time updates |
+
+## The Mental Model
+
+Think of it this way: **Server Components are for reading, Client Components are for interacting.** Most of your app is probably reading and displaying data — that's all server. The interactive bits (`'use client'`) are the islands of client-side React.
+
+```tsx
+// This is a Server Component (default in Next.js App Router)
+export default async function ArticlePage() {
+  const article = await getArticle(); // direct DB access
+
+  return (
+    <article>
+      <h1>{article.title}</h1>
+      <LikeButton articleId={article.id} /> {/* Client Component */}
+    </article>
+  );
+}
+```
+
+The key insight: you don't have to choose one or the other. You compose them together, putting the `'use client'` boundary exactly where interactivity begins.

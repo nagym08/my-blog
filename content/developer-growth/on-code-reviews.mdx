@@ -1,0 +1,30 @@
+---
+title: "On Code Reviews"
+excerpt: "Thoughts on what makes code reviews actually useful — for both the reviewer and the author."
+category: "developer-growth"
+tags: ["code-review", "collaboration", "engineering-culture"]
+publishedAt: "2026-03-10"
+status: "published"
+---
+
+Code reviews are one of the highest-leverage activities in software engineering. Done well, they spread knowledge, catch bugs, and raise the bar for the whole team. Done poorly, they're a bottleneck that breeds resentment.
+
+## For Reviewers
+
+**Review the design, not just the code.** Before you nitpick variable names, step back and ask: does this approach make sense? Is there a simpler way? The most valuable review feedback is architectural, not cosmetic.
+
+**Ask questions instead of making demands.** "Why did you choose X over Y?" opens a conversation. "Change X to Y" shuts one down. Sometimes the author has context you don't.
+
+**Be timely.** A review that takes 3 days is a review that blocks progress. Aim for same-day turnaround on small PRs.
+
+## For Authors
+
+**Keep PRs small.** A 50-line PR gets a thoughtful review. A 500-line PR gets a rubber stamp. If your change is large, break it into a stack of smaller PRs that each tell a coherent story.
+
+**Write a good description.** Explain *why* you're making this change, not just *what* changed. Link to the issue. Call out anything you're unsure about. The PR description is your chance to guide the reviewer's attention.
+
+**Don't take it personally.** Feedback on your code is not feedback on you. The best engineers I know actively seek harsh reviews because they want to improve.
+
+## The Goal
+
+The goal of code review isn't to find bugs (that's what tests are for). The goal is **shared understanding** — making sure more than one person knows how the system works, and that the team agrees on the direction.

@@ -1,0 +1,46 @@
+---
+title: "Building a Blog with Next.js"
+excerpt: "A walkthrough of building this very blog — from MDX content pipeline to database-backed comments."
+category: "project"
+tags: ["next.js", "mdx", "postgresql", "drizzle"]
+series: "Building This Blog"
+seriesOrder: 1
+publishedAt: "2026-03-22"
+status: "published"
+---
+
+This is the first post in a series documenting how I built this blog. The stack: **Next.js 16**, **MDX** for content, **PostgreSQL** for interactive features, and **Drizzle ORM** for type-safe database access.
+
+## Why MDX?
+
+I wanted to write articles in Markdown but with the ability to embed React components when needed. MDX gives you exactly that — it's Markdown with JSX support.
+
+```mdx
+# My Article
+
+Regular markdown here.
+
+<Callout type="info">
+  But I can also use React components inline!
+</Callout>
+```
+
+## The Content Pipeline
+
+Articles live as `.mdx` files in the repository:
+
+```
+content/
+├── coding/
+│   └── understanding-typescript-generics.mdx
+├── project/
+│   └── building-a-blog-with-nextjs.mdx
+└── developer-growth/
+    └── on-code-reviews.mdx
+```
+
+Each file has YAML frontmatter (title, tags, category, etc.) validated with **Zod** at parse time. The filename becomes the URL slug — no duplication, no sync issues.
+
+## What's Next
+
+In the next post, I'll cover the database layer — how comments, reactions, and view tracking work with PostgreSQL and Drizzle ORM.
