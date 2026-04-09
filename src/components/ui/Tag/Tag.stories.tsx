@@ -51,7 +51,7 @@ export const Default: Story = {
   args: { label: "General", color: "default" },
 };
 
-export const AllColors: Story = {
+export const AllColors: StoryObj = {
   render: () => (
     <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
       <Tag label="TypeScript" color="typescript" />

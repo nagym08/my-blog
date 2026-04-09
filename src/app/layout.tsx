@@ -51,7 +51,7 @@ export default function RootLayout({
         <Nav />
         <main
           style={{
-            maxWidth: "48rem",
+            maxWidth: "72rem",
             margin: "0 auto",
             padding: "2rem 1.5rem",
             flex: 1,

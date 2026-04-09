@@ -56,12 +56,12 @@ export function Header({
                   className={styles.avatar}
                 />
               )}
-              <Button variant="ghost" size="sm" onClick={onSignOut}>
+              <Button variant="secondary" size="sm" onClick={onSignOut}>
                 Sign Out
               </Button>
             </>
           ) : (
-            <Button variant="ghost" size="sm" onClick={onSignIn}>
+            <Button variant="secondary" size="sm" onClick={onSignIn}>
               Sign In
             </Button>
           )}
