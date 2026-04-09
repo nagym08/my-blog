@@ -14,7 +14,7 @@ Our palette is anchored in a deep, nocturnal base (`#0e0e10`), accented by high-
 
 ### The Palette (Material Design Tokens)
 *   **Core Background:** `background: #0e0e10` | `surface: #0e0e10`
-*   **Vibrant Accents:** `primary: #a3a6ff` | `secondary: #c180ff` | `tertiary: #699cff`
+*   **Vibrant Accents:** `primary: #a3a6ff` | `primary_dim: #6366f1` | `secondary: #c180ff` | `tertiary: #699cff`
 *   **The Container Hierarchy:**
     *   `surface_container_low`: `#131315` (Deepest sections)
     *   `surface_container`: `#19191c` (Standard cards)

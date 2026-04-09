@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import type { CSSProperties } from "react";
 import { Button } from "./Button";
 
 // ------- Sample icons (inline SVG, no external deps) -------
@@ -159,21 +160,21 @@ export const DisabledSecondary: Story = {
 };
 
 // ------- Showcases -------
-const row: React.CSSProperties = {
+const row: CSSProperties = {
   display: "flex",
   gap: "1rem",
   alignItems: "center",
   flexWrap: "wrap",
 };
 
-const col: React.CSSProperties = {
+const col: CSSProperties = {
   display: "flex",
   flexDirection: "column",
   gap: "1.5rem",
   padding: "2rem",
 };
 
-const label: React.CSSProperties = {
+const label: CSSProperties = {
   fontFamily: "Inter, sans-serif",
   fontSize: "0.7rem",
   letterSpacing: "0.12em",

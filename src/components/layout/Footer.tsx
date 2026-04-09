@@ -4,7 +4,7 @@ export function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
-        <p>Copyright</p>
+        <p>&copy; {new Date().getFullYear()} S&amp;S. All rights reserved.</p>
         <div className={styles.icons}>
           <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">

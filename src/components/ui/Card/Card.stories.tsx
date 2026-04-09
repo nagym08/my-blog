@@ -69,7 +69,7 @@ export const FeaturedNoImage: Story = {
   },
 };
 
-export const CardGrid: StoryObj = {
+export const CardGrid: StoryObj<typeof Card> = {
   render: () => (
     <div
       style={{

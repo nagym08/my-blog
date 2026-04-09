@@ -10,6 +10,7 @@ export interface SearchInputProps
 
 export function SearchInput({
   onSearch,
+  onChange,
   className,
   ...props
 }: SearchInputProps) {
@@ -33,8 +34,11 @@ export function SearchInput({
       <input
         type="search"
         className={clsx(styles.input, className)}
-        onChange={(e) => onSearch?.(e.target.value)}
         {...props}
+        onChange={(e) => {
+          onChange?.(e);
+          onSearch?.(e.target.value);
+        }}
       />
     </div>
   );
