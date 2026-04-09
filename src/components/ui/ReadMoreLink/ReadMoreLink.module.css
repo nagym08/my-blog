@@ -1,0 +1,23 @@
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--accent);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.link:hover {
+  color: var(--accent-hover);
+  text-decoration: none;
+}
+
+.link:hover .arrow {
+  transform: translateX(3px);
+}
+
+.arrow {
+  transition: transform 0.2s ease;
+}

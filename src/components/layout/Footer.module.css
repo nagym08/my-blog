@@ -1,14 +1,36 @@
 .footer {
   border-top: 1px solid var(--border);
-  padding: 2rem 0;
+  padding: 1rem 0;
   margin-top: auto;
+  background: rgba(11, 13, 23, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .container {
-  max-width: 48rem;
+  max-width: 72rem;
   margin: 0 auto;
   padding: 0 1.5rem;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   color: var(--muted);
   font-size: 0.875rem;
+}
+
+.icons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.icons a {
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+}
+
+.icons a:hover {
+  color: var(--foreground);
+  text-decoration: none;
 }

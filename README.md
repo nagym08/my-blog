@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# my-blog
+
+A personal coding blog built on Next.js 16 and React 19. Articles are authored in MDX (see `content/`) and rendered with syntax-highlighted code via `rehype-pretty-code`. The app ships with authentication (NextAuth + Drizzle adapter on Postgres), full-text search powered by Fuse.js, tag-based categorization, and a custom "Luminous Depth" design system documented in [`DESIGN.md`](./DESIGN.md). UI components live under `src/components/ui/` and are developed in isolation with Storybook.
+
+## Tech Stack
+
+- **Framework:** Next.js 16 (App Router) + React 19
+- **Content:** MDX via `next-mdx-remote`, `remark-gfm`, `rehype-pretty-code`
+- **Auth & DB:** NextAuth v5 + Drizzle ORM + Postgres
+- **Search:** Fuse.js
+- **UI/Docs:** Storybook 10 + Vitest (browser mode with Playwright)
+- **Styling:** CSS Modules with a custom design-token system
 
 ## Getting Started
 
-First, run the development server:
+Install dependencies:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+bun install
+# or: npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Create a `.env.local` file with your database URL and auth secrets (see `drizzle.config.ts` and the NextAuth setup for the expected variables).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Run the database migrations:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+bun run db:generate   # generate migrations from the schema
+bun run db:migrate    # apply them to your database
+```
 
-## Learn More
+Start the dev server:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+bun run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The app runs on [http://localhost:3001](http://localhost:3001) (note: port **3001**, not the Next.js default).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Other useful scripts
 
-## Deploy on Vercel
+```bash
+bun run build            # production build
+bun run start            # start the production server
+bun run lint             # eslint
+bun run storybook        # Storybook on :6006
+bun run build-storybook  # static Storybook build
+bun run db:studio        # Drizzle Studio
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Docker
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+A `Dockerfile` and `compose.yml` are provided for containerized runs:
+
+```bash
+docker compose up --build
+```
+
+## Project Structure
+
+```
+src/
+  app/              # Next.js App Router routes
+  components/
+    layout/         # Header, Footer, Nav, AuthButton
+    ui/             # Design-system primitives (Button, Card, Tag, ...)
+    articles/      
+content/            # MDX articles
+skills/             # TDD / design guidelines consumed by CLAUDE.md
+DESIGN.md           # "Luminous Depth" design system spec
+```
+
+## A Note on How This Was Built
+
+This project is **fully vibecoded**. Every line — the architecture, the schema, the components, the design system, even this README — was produced through conversational pair-programming with AI agents, steered by taste and intent rather than hand-written from scratch. It's an experiment in what a modern web app looks like when the human stays in the driver's seat but never touches the keyboard for the grunt work.

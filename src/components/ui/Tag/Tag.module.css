@@ -1,0 +1,45 @@
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  font-size: 0.7rem;
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.typescript {
+  color: var(--tag-typescript);
+  background: color-mix(in srgb, var(--tag-typescript) 15%, transparent);
+}
+
+.backend {
+  color: var(--tag-backend);
+  background: color-mix(in srgb, var(--tag-backend) 15%, transparent);
+}
+
+.api {
+  color: var(--tag-api);
+  background: color-mix(in srgb, var(--tag-api) 15%, transparent);
+}
+
+.css-design {
+  color: var(--tag-css-design);
+  background: color-mix(in srgb, var(--tag-css-design) 15%, transparent);
+}
+
+.dev-growth {
+  color: var(--tag-dev-growth);
+  background: color-mix(in srgb, var(--tag-dev-growth) 15%, transparent);
+}
+
+.frontend {
+  color: var(--tag-frontend);
+  background: color-mix(in srgb, var(--tag-frontend) 15%, transparent);
+}
+
+.default {
+  color: var(--tag-default);
+  background: color-mix(in srgb, var(--tag-default) 15%, transparent);
+}
