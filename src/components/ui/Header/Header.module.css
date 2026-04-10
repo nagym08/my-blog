@@ -1,13 +1,19 @@
 .header {
-  border-bottom: 1px solid var(--border);
-  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(11, 13, 23, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 0.75rem 0;
 }
 
 .container {
   max-width: 72rem;
   margin: 0 auto;
   padding: 0 1.5rem;
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
 }
 
@@ -24,8 +30,8 @@
 
 .nav {
   display: flex;
+  justify-content: center;
   gap: 1.5rem;
-  margin-left: 2rem;
 }
 
 .navLink {
@@ -41,38 +47,39 @@
 }
 
 .actions {
-  margin-left: auto;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 0.75rem;
 }
 
-.userName {
-  font-size: 0.875rem;
-  color: var(--foreground);
+.searchLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  transition: color 0.15s ease;
 }
 
-.avatar {
-  width: 2rem;
-  height: 2rem;
-  border-radius: 50%;
-  object-fit: cover;
+.searchLink:hover {
+  color: var(--foreground);
+  text-decoration: none;
+}
+
+.searchLink svg {
+  width: 1.125rem;
+  height: 1.125rem;
 }
 
 @media (max-width: 640px) {
   .container {
-    flex-wrap: wrap;
-    gap: 0.75rem;
+    grid-template-columns: auto 1fr;
   }
 
   .nav {
-    order: 3;
-    width: 100%;
-    margin-left: 0;
+    grid-column: 1 / -1;
+    justify-content: flex-start;
     gap: 1rem;
-  }
-
-  .actions {
-    order: 2;
+    padding-top: 0.75rem;
   }
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Nav } from "@/components/layout/Nav";
+import { Header } from "@/components/ui/Header/Header";
+import { AuthButton } from "@/components/layout/AuthButton";
 import { Footer } from "@/components/layout/Footer";
 import "./globals.css";
 
@@ -13,6 +14,13 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+const navItems = [
+  { label: "Coding", href: "/category/coding" },
+  { label: "Projects", href: "/category/project" },
+  { label: "Dev Growth", href: "/category/developer-growth" },
+  { label: "About", href: "/about" },
+];
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -48,7 +56,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body>
-        <Nav />
+        <Header
+          navItems={navItems}
+          searchHref="/search"
+          authContent={<AuthButton />}
+        />
         <main
           style={{
             maxWidth: "72rem",

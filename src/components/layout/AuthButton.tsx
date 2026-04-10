@@ -1,5 +1,6 @@
 import { auth, signOut } from "@/lib/auth";
 import Link from "next/link";
+import { Button } from "@/components/ui/Button/Button";
 import styles from "./AuthButton.module.css";
 
 export async function AuthButton() {
@@ -7,8 +8,10 @@ export async function AuthButton() {
 
   if (!session?.user) {
     return (
-      <Link href="/auth/signin" className={styles.signIn}>
-        Sign in
+      <Link href="/auth/signin">
+        <Button variant="primary" size="sm" tabIndex={-1}>
+          Sign In
+        </Button>
       </Link>
     );
   }
@@ -22,9 +25,9 @@ export async function AuthButton() {
           await signOut({ redirectTo: "/" });
         }}
       >
-        <button type="submit" className={styles.signOut}>
-          Sign out
-        </button>
+        <Button variant="secondary" size="sm" type="submit">
+          Sign Out
+        </Button>
       </form>
     </div>
   );

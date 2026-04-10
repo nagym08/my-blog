@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import { Button } from "../Button/Button";
 import { Header } from "./Header";
 
 const defaultNavItems = [
@@ -13,10 +14,15 @@ const meta = {
   component: Header,
   parameters: {
     layout: "fullscreen",
+    backgrounds: {
+      default: "luminous",
+      values: [{ name: "luminous", value: "#0e0e10" }],
+    },
   },
   args: {
     logo: "S&S",
     navItems: defaultNavItems,
+    searchHref: "/search",
   },
 } satisfies Meta<typeof Header>;
 
@@ -25,21 +31,42 @@ type Story = StoryObj<typeof meta>;
 
 export const SignedOut: Story = {
   args: {
-    isSignedIn: false,
+    authContent: (
+      <Button variant="primary" size="sm">
+        Sign In
+      </Button>
+    ),
   },
 };
 
 export const SignedIn: Story = {
   args: {
-    isSignedIn: true,
-    userName: "John Doe",
-    userAvatar: "https://i.pravatar.cc/64?u=johndoe",
+    authContent: (
+      <Button variant="secondary" size="sm">
+        Sign Out
+      </Button>
+    ),
   },
 };
 
 export const NoNav: Story = {
   args: {
     navItems: [],
-    isSignedIn: false,
+    authContent: (
+      <Button variant="primary" size="sm">
+        Sign In
+      </Button>
+    ),
+  },
+};
+
+export const NoSearch: Story = {
+  args: {
+    searchHref: undefined,
+    authContent: (
+      <Button variant="primary" size="sm">
+        Sign In
+      </Button>
+    ),
   },
 };
