@@ -6,16 +6,27 @@ export const metadata: Metadata = {
   title: "Search",
 };
 
-export default function SearchPage() {
+export default async function SearchPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ q?: string }>;
+}) {
+  const { q } = await searchParams;
   const searchIndex = getSearchIndex();
   const articles = getAllArticles();
 
   return (
     <>
-      <h1 style={{ fontSize: "1.75rem", fontWeight: 700, marginBottom: "1.5rem" }}>
+      <h1
+        style={{ fontSize: "1.75rem", fontWeight: 700, marginBottom: "1.5rem" }}
+      >
         Search
       </h1>
-      <SearchBar searchIndex={searchIndex} articles={articles} />
+      <SearchBar
+        searchIndex={searchIndex}
+        articles={articles}
+        initialQuery={q ?? ""}
+      />
     </>
   );
 }

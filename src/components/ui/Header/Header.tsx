@@ -1,21 +1,9 @@
 import clsx from "clsx";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { ExpandableSearch } from "@/components/ui/ExpandableSearch/ExpandableSearch";
+import type { SearchItem } from "@/components/search/useArticleSearch";
 import styles from "./Header.module.css";
-
-const SearchIcon = () => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <circle cx="11" cy="11" r="7" />
-    <path d="m20 20-3.5-3.5" />
-  </svg>
-);
 
 export interface NavItem {
   label: string;
@@ -25,7 +13,7 @@ export interface NavItem {
 export interface HeaderProps {
   logo?: string;
   navItems?: NavItem[];
-  searchHref?: string;
+  searchIndex?: SearchItem[];
   authContent?: ReactNode;
   className?: string;
 }
@@ -33,7 +21,7 @@ export interface HeaderProps {
 export function Header({
   logo = "S&S",
   navItems = [],
-  searchHref,
+  searchIndex,
   authContent,
   className,
 }: HeaderProps) {
@@ -55,15 +43,7 @@ export function Header({
         )}
 
         <div className={styles.actions}>
-          {searchHref && (
-            <Link
-              href={searchHref}
-              className={styles.searchLink}
-              aria-label="Search"
-            >
-              <SearchIcon />
-            </Link>
-          )}
+          {searchIndex && <ExpandableSearch searchIndex={searchIndex} />}
           {authContent}
         </div>
       </div>

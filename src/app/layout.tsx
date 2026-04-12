@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Header } from "@/components/ui/Header/Header";
 import { AuthButton } from "@/components/layout/AuthButton";
 import { Footer } from "@/components/layout/Footer";
+import { getSearchIndex } from "@/lib/content";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -58,7 +59,7 @@ export default function RootLayout({
       <body>
         <Header
           navItems={navItems}
-          searchHref="/search"
+          searchIndex={getSearchIndex()}
           authContent={<AuthButton />}
         />
         <main
