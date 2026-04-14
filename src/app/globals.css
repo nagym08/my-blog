@@ -18,8 +18,9 @@
   --tag-default: #6b7280;
 
   /* Card glow */
-  --card-border: rgba(99, 102, 241, 0.12);
+  --card-border: rgba(99, 102, 241, 0.10);
   --card-glow: rgba(99, 102, 241, 0.06);
+  --card-bg: var(--surface);
 
   /* Ghost button */
   --ghost-border: rgba(0, 0, 0, 0.2);
@@ -31,6 +32,10 @@
   --radius-md: 0.75rem;
   --radius-lg: 1rem;
   --radius-full: 9999px;
+
+  /* Typography */
+  --font-sans: var(--font-inter), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: var(--font-manrope), var(--font-sans);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -44,8 +49,9 @@
     --surface: #131525;
     --code-bg: #1e1e1e;
 
-    --card-border: rgba(99, 102, 241, 0.15);
-    --card-glow: rgba(99, 102, 241, 0.08);
+    --card-border: rgba(139, 142, 255, 0.12);
+    --card-glow: rgba(99, 102, 241, 0.18);
+    --card-bg: rgba(19, 21, 37, 0.55);
 
     --ghost-border: rgba(255, 255, 255, 0.2);
     --ghost-hover-border: rgba(255, 255, 255, 0.4);
@@ -69,9 +75,14 @@ body {
   flex-direction: column;
   color: var(--foreground);
   background: url("/images/background.png") center/cover no-repeat fixed;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
 }
 
 * {

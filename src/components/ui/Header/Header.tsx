@@ -1,5 +1,8 @@
 import clsx from "clsx";
-import { Button } from "../Button/Button";
+import Link from "next/link";
+import type { ReactNode } from "react";
+import { ExpandableSearch } from "@/components/ui/ExpandableSearch/ExpandableSearch";
+import type { SearchItem } from "@/components/search/useArticleSearch";
 import styles from "./Header.module.css";
 
 export interface NavItem {
@@ -10,61 +13,38 @@ export interface NavItem {
 export interface HeaderProps {
   logo?: string;
   navItems?: NavItem[];
-  isSignedIn?: boolean;
-  userName?: string;
-  userAvatar?: string;
-  onSignIn?: () => void;
-  onSignOut?: () => void;
+  searchIndex?: SearchItem[];
+  authContent?: ReactNode;
   className?: string;
 }
 
 export function Header({
   logo = "S&S",
   navItems = [],
-  isSignedIn = false,
-  userName,
-  userAvatar,
-  onSignIn,
-  onSignOut,
+  searchIndex,
+  authContent,
   className,
 }: HeaderProps) {
   return (
     <header className={clsx(styles.header, className)}>
       <div className={styles.container}>
-        <a href="/" className={styles.logo}>
+        <Link href="/" className={styles.logo}>
           {logo}
-        </a>
+        </Link>
 
         {navItems.length > 0 && (
           <nav className={styles.nav}>
             {navItems.map((item) => (
-              <a key={item.href} href={item.href} className={styles.navLink}>
+              <Link key={item.href} href={item.href} className={styles.navLink}>
                 {item.label}
-              </a>
+              </Link>
             ))}
           </nav>
         )}
 
         <div className={styles.actions}>
-          {isSignedIn ? (
-            <>
-              {userName && <span className={styles.userName}>{userName}</span>}
-              {userAvatar && (
-                <img
-                  src={userAvatar}
-                  alt={userName || "User avatar"}
-                  className={styles.avatar}
-                />
-              )}
-              <Button variant="secondary" size="sm" onClick={onSignOut}>
-                Sign Out
-              </Button>
-            </>
-          ) : (
-            <Button variant="secondary" size="sm" onClick={onSignIn}>
-              Sign In
-            </Button>
-          )}
+          {searchIndex && <ExpandableSearch searchIndex={searchIndex} />}
+          {authContent}
         </div>
       </div>
     </header>
