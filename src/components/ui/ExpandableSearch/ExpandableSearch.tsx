@@ -22,16 +22,26 @@ export function ExpandableSearch({ searchIndex }: ExpandableSearchProps) {
   const [expanded, setExpanded] = useState(false);
   const [query, setQuery] = useState("");
   const containerRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const restoreFocusRef = useRef(false);
   const search = useArticleSearch(searchIndex);
 
   const results = query.trim() ? search(query).slice(0, 5) : [];
   const showDropdown = expanded && query.trim().length > 0;
   const seeAllHref = `/search?q=${encodeURIComponent(query)}`;
 
-  const collapse = useCallback(() => {
+  const collapse = useCallback((restoreFocus = false) => {
+    if (restoreFocus) restoreFocusRef.current = true;
     setExpanded(false);
     setQuery("");
   }, []);
+
+  useEffect(() => {
+    if (!expanded && restoreFocusRef.current) {
+      restoreFocusRef.current = false;
+      triggerRef.current?.focus();
+    }
+  }, [expanded]);
 
   // Outside-click always collapses
   useEffect(() => {
@@ -57,7 +67,7 @@ export function ExpandableSearch({ searchIndex }: ExpandableSearchProps) {
   const handleInputKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLInputElement>) => {
       if (e.key === "Escape") {
-        collapse();
+        collapse(true);
         return;
       }
       if (e.key === "ArrowDown" && showDropdown) {
@@ -75,8 +85,7 @@ export function ExpandableSearch({ searchIndex }: ExpandableSearchProps) {
     (e: React.KeyboardEvent, index: number) => {
       if (e.key === "Escape") {
         e.preventDefault();
-        collapse();
-        containerRef.current?.querySelector<HTMLInputElement>("input")?.focus();
+        collapse(true);
         return;
       }
       if (e.key === "ArrowDown") {
@@ -111,6 +120,7 @@ export function ExpandableSearch({ searchIndex }: ExpandableSearchProps) {
     >
       {!expanded ? (
         <button
+          ref={triggerRef}
           className={styles.trigger}
           aria-label="Search"
           aria-expanded={false}
