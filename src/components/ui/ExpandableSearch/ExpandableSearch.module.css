@@ -69,8 +69,7 @@
   position: absolute;
   top: calc(100% + 0.5rem);
   right: 0;
-  width: 100%;
-  min-width: 20rem;
+  width: max(100%, min(20rem, calc(100vw - 2rem)));
   background: rgba(11, 13, 23, 0.92);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -80,6 +79,12 @@
     inset 0 0 0 1px rgba(163, 166, 255, 0.14);
   overflow: hidden;
   z-index: 200;
+}
+
+.resultList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 /* Individual result row */

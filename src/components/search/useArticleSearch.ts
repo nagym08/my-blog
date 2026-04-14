@@ -25,7 +25,10 @@ export function useArticleSearch(index: SearchItem[]) {
   );
 
   return useCallback(
-    (q: string) => (q.trim() ? fuse.search(q).map((r) => r.item) : []),
+    (q: string) => {
+      const trimmed = q.trim();
+      return trimmed ? fuse.search(trimmed).map((r) => r.item) : [];
+    },
     [fuse]
   );
 }

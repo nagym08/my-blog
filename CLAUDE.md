@@ -13,7 +13,7 @@ bun run build            # Production build
 bun run lint             # ESLint (flat config, no args needed)
 bun run storybook        # Storybook on localhost:6006
 npx vitest               # Run all tests (Storybook stories via vitest browser mode)
-npx vitest --test-name "Button" # Run a single test by name
+npx vitest -t "Button"   # Run a single test by name pattern
 
 bun run db:generate      # Generate Drizzle migrations from schema
 bun run db:migrate       # Apply migrations to Postgres

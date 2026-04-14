@@ -220,4 +220,8 @@
   .trigger:hover {
     transform: none;
   }
+  .tooltip,
+  .menu {
+    animation: none;
+  }
 }

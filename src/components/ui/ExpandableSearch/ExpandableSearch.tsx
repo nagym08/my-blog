@@ -63,7 +63,7 @@ export function ExpandableSearch({ searchIndex }: ExpandableSearchProps) {
       if (e.key === "ArrowDown" && showDropdown) {
         e.preventDefault();
         const first = containerRef.current?.querySelector<HTMLElement>(
-          '[role="option"]'
+          `.${styles.dropdown} a[href]`
         );
         first?.focus();
       }
@@ -82,7 +82,7 @@ export function ExpandableSearch({ searchIndex }: ExpandableSearchProps) {
       if (e.key === "ArrowDown") {
         e.preventDefault();
         const options = containerRef.current?.querySelectorAll<HTMLElement>(
-          '[role="option"]'
+          `.${styles.dropdown} a[href]`
         );
         options?.[index + 1]?.focus();
       }
@@ -94,7 +94,7 @@ export function ExpandableSearch({ searchIndex }: ExpandableSearchProps) {
             ?.focus();
         } else {
           const options = containerRef.current?.querySelectorAll<HTMLElement>(
-            '[role="option"]'
+            `.${styles.dropdown} a[href]`
           );
           options?.[index - 1]?.focus();
         }
@@ -146,16 +146,9 @@ export function ExpandableSearch({ searchIndex }: ExpandableSearchProps) {
             autoFocus
             onKeyDown={handleInputKeyDown}
             aria-label="Search articles"
-            aria-expanded={showDropdown}
-            aria-haspopup="listbox"
-            aria-autocomplete="list"
           />
           {showDropdown && (
-            <div
-              className={styles.dropdown}
-              role="listbox"
-              aria-label="Search results"
-            >
+            <nav className={styles.dropdown} aria-label="Search results">
               {results.length === 0 ? (
                 <>
                   <div className={styles.noResults}>
@@ -163,7 +156,6 @@ export function ExpandableSearch({ searchIndex }: ExpandableSearchProps) {
                   </div>
                   <Link
                     href={seeAllHref}
-                    role="option"
                     className={clsx(styles.seeAll, styles.noResultsSeeAll)}
                     onKeyDown={(e) => handleOptionKeyDown(e, 0)}
                   >
@@ -171,37 +163,36 @@ export function ExpandableSearch({ searchIndex }: ExpandableSearchProps) {
                   </Link>
                 </>
               ) : (
-                <>
+                <ul className={styles.resultList}>
                   {results.map((item, i) => (
-                    <Link
-                      key={item.slug}
-                      href={`/articles/${item.slug}`}
-                      role="option"
-                      className={styles.resultRow}
-                      onKeyDown={(e) => handleOptionKeyDown(e, i)}
-                    >
-                      <span className={styles.resultTitle}>{item.title}</span>
-                      <span className={styles.resultMeta}>
-                        <span className={styles.category}>
-                          {CATEGORY_LABELS[item.category] ?? item.category}
+                    <li key={item.slug}>
+                      <Link
+                        href={`/articles/${item.slug}`}
+                        className={styles.resultRow}
+                        onKeyDown={(e) => handleOptionKeyDown(e, i)}
+                      >
+                        <span className={styles.resultTitle}>{item.title}</span>
+                        <span className={styles.resultMeta}>
+                          <span className={styles.category}>
+                            {CATEGORY_LABELS[item.category] ?? item.category}
+                          </span>
+                          <span className={styles.excerpt}>{item.excerpt}</span>
                         </span>
-                        <span className={styles.excerpt}>{item.excerpt}</span>
-                      </span>
-                    </Link>
+                      </Link>
+                    </li>
                   ))}
-                  <Link
-                    href={seeAllHref}
-                    role="option"
-                    className={styles.seeAll}
-                    onKeyDown={(e) =>
-                      handleOptionKeyDown(e, results.length)
-                    }
-                  >
-                    See all results →
-                  </Link>
-                </>
+                  <li>
+                    <Link
+                      href={seeAllHref}
+                      className={styles.seeAll}
+                      onKeyDown={(e) => handleOptionKeyDown(e, results.length)}
+                    >
+                      See all results →
+                    </Link>
+                  </li>
+                </ul>
               )}
-            </div>
+            </nav>
           )}
         </form>
       )}

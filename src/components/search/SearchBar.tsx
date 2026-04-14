@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useArticleSearch } from "./useArticleSearch";
 import type { SearchItem } from "./useArticleSearch";
 import { ArticleCard } from "@/components/articles/ArticleCard";
@@ -18,6 +18,10 @@ export function SearchBar({
 }) {
   const [query, setQuery] = useState(initialQuery);
   const search = useArticleSearch(searchIndex);
+
+  useEffect(() => {
+    setQuery(initialQuery);
+  }, [initialQuery]);
 
   const articleMap = useMemo(
     () => new Map(articles.map((a) => [a.slug, a])),
