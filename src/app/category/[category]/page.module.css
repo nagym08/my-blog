@@ -1,0 +1,21 @@
+.section {
+  padding: 1rem 0 2rem;
+}
+
+.heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  color: var(--foreground);
+}
+
+.cardGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.empty {
+  color: var(--muted-foreground, var(--foreground));
+  padding: 2rem 0;
+}

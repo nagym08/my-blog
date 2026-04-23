@@ -1,41 +1,11 @@
 import { desc } from "drizzle-orm";
-import { format } from "date-fns";
 import { getAllArticles, getArticleBySlug, toMeta } from "@/lib/content";
-import { Card, type CardTag } from "@/components/ui";
+import { Card } from "@/components/ui";
 import { db } from "@/lib/db";
 import { articleViewCounts } from "@/db/schema";
 import type { ArticleMeta } from "@/lib/content";
-import type { TagColor } from "@/components/ui";
+import { articleToCardProps } from "@/lib/articleCard";
 import styles from "./page.module.css";
-
-const categoryToColor: Record<string, TagColor> = {
-  coding: "typescript",
-  project: "frontend",
-  "developer-growth": "dev-growth",
-};
-
-function articleToCardProps(article: ArticleMeta, featured = false) {
-  const { slug, frontmatter, readingTime } = article;
-  const tags: CardTag[] = [
-    {
-      label: frontmatter.category,
-      color: categoryToColor[frontmatter.category] ?? "default",
-    },
-    ...frontmatter.tags.map((t) => ({ label: t, color: "default" as TagColor })),
-  ];
-
-  return {
-    variant: featured ? ("featured" as const) : ("standard" as const),
-    image: featured && frontmatter.coverImage
-      ? { src: frontmatter.coverImage, alt: frontmatter.title }
-      : undefined,
-    tags,
-    title: frontmatter.title,
-    description: frontmatter.excerpt,
-    date: format(frontmatter.publishedAt, "MMM d, yyyy"),
-    href: `/articles/${slug}`,
-  };
-}
 
 async function getMostPopular(limit: number): Promise<ArticleMeta[]> {
   const rows = await db
