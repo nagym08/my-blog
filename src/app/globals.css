@@ -38,6 +38,31 @@
   /* Typography */
   --font-sans: var(--font-inter), system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-display: var(--font-manrope), var(--font-sans);
+
+  /* --- Luminous Depth: Material Design surface hierarchy --- */
+  --ld-surface: #0e0e10;
+  --ld-surface-container-low: #131315;
+  --ld-surface-container: #19191c;
+  --ld-surface-container-high: #1f1e22;
+  --ld-surface-container-highest: #262528;
+
+  /* --- Luminous Depth: accents --- */
+  --ld-primary: #a3a6ff;
+  --ld-primary-dim: #6366f1;
+  --ld-secondary: #c180ff;
+  --ld-tertiary: #699cff;
+  --ld-on-surface: #ededf1;
+  --ld-on-surface-variant: #a7a8b8;
+
+  /* --- Luminous Depth: ghost borders & tinted glows --- */
+  --ld-ghost: rgba(255, 255, 255, 0.08);
+  --ld-ghost-strong: rgba(255, 255, 255, 0.14);
+  --ld-glow-primary: rgba(163, 166, 255, 0.38);
+  --ld-glow-primary-soft: rgba(163, 166, 255, 0.12);
+  --ld-glow-ambient: rgba(99, 102, 241, 0.18);
+
+  /* --- Luminous Depth: signature gradient --- */
+  --ld-gradient-primary: linear-gradient(135deg, #a3a6ff 0%, #6366f1 100%);
 }
 
 html {

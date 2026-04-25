@@ -14,6 +14,7 @@ import { CommentSection } from "@/components/comments/CommentSection";
 import { ViewTracker } from "@/components/articles/ViewTracker";
 import { BookmarkButton } from "@/components/articles/BookmarkButton";
 import { ReactionBar } from "@/components/articles/ReactionBar";
+import { Tag } from "@/components/ui";
 import Link from "next/link";
 import styles from "./page.module.css";
 
@@ -70,26 +71,40 @@ export default async function ArticlePage({
     <article className={styles.article}>
       <ViewTracker slug={slug} />
 
-      <header className={styles.header}>
-        <h1 className={styles.title}>{frontmatter.title}</h1>
-        <div className={styles.meta}>
-          <time>{format(frontmatter.publishedAt, "MMMM d, yyyy")}</time>
-          <span>&middot;</span>
-          <span>{readingTime}</span>
-          <span>&middot;</span>
-          <Link href={`/category/${frontmatter.category}`}>
-            {frontmatter.category}
-          </Link>
-        </div>
-        {frontmatter.tags.length > 0 && (
-          <div className={styles.tags}>
-            {frontmatter.tags.map((tag) => (
-              <span key={tag} className={styles.tag}>
-                {tag}
-              </span>
-            ))}
+      <header
+        className={
+          frontmatter.coverImage ? styles.heroHeader : styles.textHeader
+        }
+      >
+        {frontmatter.coverImage && (
+          <div className={styles.hero}>
+            <img
+              src={frontmatter.coverImage}
+              alt=""
+              className={styles.heroImage}
+            />
+            <div className={styles.heroScrim} aria-hidden />
           </div>
         )}
+        <div className={styles.titleBlock}>
+          <h1 className={styles.title}>{frontmatter.title}</h1>
+          <div className={styles.meta}>
+            <time>{format(frontmatter.publishedAt, "MMM d, yyyy")}</time>
+            <span className={styles.metaDot}>&middot;</span>
+            <span>{readingTime}</span>
+            <span className={styles.metaDot}>&middot;</span>
+            <Link href={`/category/${frontmatter.category}`}>
+              {frontmatter.category}
+            </Link>
+          </div>
+          {frontmatter.tags.length > 0 && (
+            <div className={styles.tags}>
+              {frontmatter.tags.map((tag) => (
+                <Tag key={tag} label={tag} color="default" />
+              ))}
+            </div>
+          )}
+        </div>
       </header>
 
       {seriesArticles.length > 1 && (
