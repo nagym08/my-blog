@@ -1,0 +1,45 @@
+.page {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: 1rem 0 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.pageHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ld-on-surface-variant);
+  margin: 0;
+}
+
+.pageTitle {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--ld-on-surface);
+  margin: 0;
+  line-height: 1.1;
+  background: linear-gradient(
+    135deg,
+    var(--ld-on-surface) 0%,
+    var(--ld-primary) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@media (max-width: 540px) {
+  .pageTitle {
+    font-size: 2rem;
+  }
+}
