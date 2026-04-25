@@ -1,7 +1,9 @@
 import { notFound } from "next/navigation";
 import { getArticlesByCategory } from "@/lib/content";
 import { CATEGORIES, type Category } from "@/lib/content.schema";
-import { ArticleList } from "@/components/articles/ArticleList";
+import { Card } from "@/components/ui";
+import { articleToCardProps } from "@/lib/articleCard";
+import styles from "./page.module.css";
 
 const CATEGORY_LABELS: Record<Category, string> = {
   coding: "Coding",
@@ -39,5 +41,18 @@ export default async function CategoryPage({
   const articles = getArticlesByCategory(category as Category);
   const label = CATEGORY_LABELS[category as Category];
 
-  return <ArticleList articles={articles} heading={label} />;
+  return (
+    <section className={styles.section}>
+      <h1 className={styles.heading}>{label}</h1>
+      {articles.length === 0 ? (
+        <p className={styles.empty}>No articles found.</p>
+      ) : (
+        <div className={styles.cardGrid}>
+          {articles.map((article) => (
+            <Card key={article.slug} {...articleToCardProps(article)} />
+          ))}
+        </div>
+      )}
+    </section>
+  );
 }
