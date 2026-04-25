@@ -63,6 +63,10 @@
 
   /* --- Luminous Depth: signature gradient --- */
   --ld-gradient-primary: linear-gradient(135deg, #a3a6ff 0%, #6366f1 100%);
+  --ld-gradient-primary-hover: linear-gradient(135deg, #b4b7ff 0%, #7a7dff 100%);
+
+  /* --- Luminous Depth: status colors --- */
+  --ld-error: #ff8b8b;
 }
 
 html {

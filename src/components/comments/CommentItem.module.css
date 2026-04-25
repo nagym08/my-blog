@@ -72,7 +72,7 @@
 }
 
 .deleteBtn:hover {
-  color: #ff8b8b;
+  color: var(--ld-error);
 }
 
 .deleteBtn:disabled {
@@ -129,7 +129,7 @@
 }
 
 .saveBtn:hover:not(:disabled) {
-  background: linear-gradient(135deg, #b4b7ff 0%, #7a7dff 100%);
+  background: var(--ld-gradient-primary-hover);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.3),
     0 10px 28px -8px var(--ld-glow-primary);

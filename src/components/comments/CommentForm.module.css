@@ -34,7 +34,7 @@
 }
 
 .error {
-  color: #ff8b8b;
+  color: var(--ld-error);
   font-size: 0.8125rem;
   margin-top: 0.5rem;
 }
@@ -68,7 +68,7 @@
 }
 
 .submit:hover:not(:disabled) {
-  background: linear-gradient(135deg, #b4b7ff 0%, #7a7dff 100%);
+  background: var(--ld-gradient-primary-hover);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.3),
     inset 0 0 0 1px rgba(255, 255, 255, 0.18),

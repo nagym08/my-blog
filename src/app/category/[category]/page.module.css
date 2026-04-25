@@ -6,7 +6,7 @@
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 1.25rem;
-  color: var(--foreground);
+  color: var(--ld-on-surface);
 }
 
 .cardGrid {
@@ -16,6 +16,6 @@
 }
 
 .empty {
-  color: var(--muted-foreground, var(--foreground));
+  color: var(--ld-on-surface-variant);
   padding: 2rem 0;
 }

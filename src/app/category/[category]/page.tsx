@@ -43,7 +43,7 @@ export default async function CategoryPage({
 
   return (
     <section className={styles.section}>
-      <h2 className={styles.heading}>{label}</h2>
+      <h1 className={styles.heading}>{label}</h1>
       {articles.length === 0 ? (
         <p className={styles.empty}>No articles found.</p>
       ) : (

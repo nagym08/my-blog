@@ -16,6 +16,7 @@ import { BookmarkButton } from "@/components/articles/BookmarkButton";
 import { ReactionBar } from "@/components/articles/ReactionBar";
 import { Tag } from "@/components/ui";
 import Link from "next/link";
+import Image from "next/image";
 import styles from "./page.module.css";
 
 export function generateStaticParams() {
@@ -78,9 +79,12 @@ export default async function ArticlePage({
       >
         {frontmatter.coverImage && (
           <div className={styles.hero}>
-            <img
+            <Image
               src={frontmatter.coverImage}
               alt=""
+              fill
+              priority
+              sizes="100vw"
               className={styles.heroImage}
             />
             <div className={styles.heroScrim} aria-hidden />
