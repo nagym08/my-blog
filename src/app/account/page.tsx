@@ -4,9 +4,10 @@ import { eq } from "drizzle-orm";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { users } from "@/db/schema";
-import { getMyBookmarks } from "@/actions/bookmarks";
+import { getMyBookmarksCount } from "@/actions/bookmarks";
+import { PageHeader } from "@/components/ui";
 import { AccountProfile } from "@/components/account/AccountProfile";
-import { BookmarkList } from "@/components/account/BookmarkList";
+import { BookmarksSummary } from "@/components/account/BookmarksSummary";
 import { DangerZone } from "@/components/account/DangerZone";
 import styles from "./page.module.css";
 
@@ -21,11 +22,11 @@ export default async function AccountPage() {
     redirect("/auth/signin?callbackUrl=/account");
   }
 
-  const [user, bookmarks] = await Promise.all([
+  const [user, bookmarksCount] = await Promise.all([
     db.query.users.findFirst({
       where: eq(users.id, session.user.id),
     }),
-    getMyBookmarks(),
+    getMyBookmarksCount(),
   ]);
 
   if (!user) {
@@ -34,10 +35,7 @@ export default async function AccountPage() {
 
   return (
     <div className={styles.page}>
-      <header className={styles.pageHeader}>
-        <p className={styles.eyebrow}>Account</p>
-        <h1 className={styles.pageTitle}>Your space</h1>
-      </header>
+      <PageHeader eyebrow="Account" title="Your space" />
 
       <AccountProfile
         name={user.name}
@@ -47,7 +45,7 @@ export default async function AccountPage() {
         createdAt={user.createdAt}
       />
 
-      <BookmarkList bookmarks={bookmarks} />
+      <BookmarksSummary count={bookmarksCount} />
 
       <DangerZone />
     </div>

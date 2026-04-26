@@ -6,11 +6,6 @@ import styles from "./BookmarkList.module.css";
 export function BookmarkList({ bookmarks }: { bookmarks: MyBookmark[] }) {
   return (
     <section className={styles.section}>
-      <header className={styles.header}>
-        <h2 className={styles.heading}>Bookmarks</h2>
-        <span className={styles.count}>{bookmarks.length}</span>
-      </header>
-
       {bookmarks.length === 0 ? (
         <div className={styles.empty}>
           <p className={styles.emptyText}>

@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { eq, and, desc } from "drizzle-orm";
+import { eq, and, desc, count } from "drizzle-orm";
 import { db } from "@/lib/db";
 import { auth } from "@/lib/auth";
 import { bookmarks } from "@/db/schema";
@@ -71,6 +71,18 @@ export async function getMyBookmarks(): Promise<MyBookmark[]> {
     });
   }
   return result;
+}
+
+export async function getMyBookmarksCount(): Promise<number> {
+  const session = await auth();
+  if (!session?.user?.id) return 0;
+
+  const [row] = await db
+    .select({ value: count() })
+    .from(bookmarks)
+    .where(eq(bookmarks.userId, session.user.id));
+
+  return row?.value ?? 0;
 }
 
 export async function removeBookmark(articleSlug: string) {

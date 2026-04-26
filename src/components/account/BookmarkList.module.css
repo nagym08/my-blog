@@ -1,34 +1,6 @@
 .section {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
-}
-
-.header {
-  display: flex;
-  align-items: baseline;
-  gap: 0.75rem;
-}
-
-.heading {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--ld-on-surface);
-  margin: 0;
-}
-
-.count {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 1.75rem;
-  padding: 0.15rem 0.55rem;
-  background: var(--ld-surface-container-highest);
-  color: var(--ld-on-surface-variant);
-  border-radius: var(--radius-full);
-  font-size: 0.8125rem;
-  font-variant-numeric: tabular-nums;
 }
 
 .list {

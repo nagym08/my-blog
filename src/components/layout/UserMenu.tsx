@@ -12,6 +12,12 @@ const UserSettingsIcon = () => (
   </svg>
 );
 
+const BookmarksIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+  </svg>
+);
+
 const SignOutIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
@@ -40,6 +46,11 @@ export function UserMenu({ name, image, signOutAction }: UserMenuProps) {
           label: "Manage account",
           icon: <UserSettingsIcon />,
           onSelect: () => router.push("/account"),
+        },
+        {
+          label: "Bookmarks",
+          icon: <BookmarksIcon />,
+          onSelect: () => router.push("/account/bookmarks"),
         },
         {
           label: "Sign out",
