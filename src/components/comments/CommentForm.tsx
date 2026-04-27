@@ -28,7 +28,10 @@ export function CommentForm({
   const [error, action, pending] = useActionState(handleSubmit, null);
 
   return (
-    <form action={action} className={styles.form}>
+    <form
+      action={action}
+      className={parentId ? styles.formNested : styles.form}
+    >
       <textarea
         name="body"
         placeholder={parentId ? "Write a reply..." : "Write a comment..."}

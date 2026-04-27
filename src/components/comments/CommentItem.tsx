@@ -56,20 +56,21 @@ export function CommentItem({
           <Image
             src={comment.authorImage}
             alt=""
-            width={24}
-            height={24}
+            width={36}
+            height={36}
             className={styles.avatar}
           />
         )}
         <span className={styles.author}>
           {comment.authorName ?? "Anonymous"}
         </span>
+        <span className={styles.metaSpacer} />
+        {comment.isEdited && (
+          <span className={styles.edited}>edited</span>
+        )}
         <span className={styles.time}>
           {formatDistanceToNow(comment.createdAt, { addSuffix: true })}
         </span>
-        {comment.isEdited && (
-          <span className={styles.edited}>(edited)</span>
-        )}
       </div>
 
       {editing ? (
