@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PageHeader } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "About",
@@ -7,9 +8,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <div style={{ lineHeight: 1.75 }}>
-      <h1 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "1.5rem" }}>
-        About
-      </h1>
+      <PageHeader eyebrow="About" title="About this blog" />
       <p style={{ marginBottom: "1rem" }}>
         Welcome to my blog. I write about software engineering, side projects,
         and lessons learned along the way.

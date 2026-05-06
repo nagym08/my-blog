@@ -1,78 +1,122 @@
 .comment {
-  padding-left: 0;
+  position: relative;
+  padding: 1.25rem 1.4rem;
+  background: var(--ld-surface-container);
+  border-radius: var(--radius-lg);
+  box-shadow: inset 0 0 0 1px var(--ld-ghost);
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.comment:hover {
+  box-shadow:
+    inset 0 0 0 1px var(--ld-ghost-strong),
+    0 0 24px -8px var(--ld-glow-primary-soft);
+  transform: translateY(-1px);
 }
 
 .header {
   display: flex;
   align-items: center;
-  gap: 0.625rem;
-  margin-bottom: 0.5rem;
+  gap: 0.75rem;
+  margin-bottom: 0.875rem;
 }
 
 .avatar {
-  width: 1.75rem;
-  height: 1.75rem;
+  width: 2.25rem;
+  height: 2.25rem;
   border-radius: 50%;
+  padding: 2px;
+  background:
+    linear-gradient(var(--ld-surface-container), var(--ld-surface-container))
+      padding-box,
+    linear-gradient(
+      135deg,
+      rgba(163, 166, 255, 0.45),
+      rgba(99, 102, 241, 0.25)
+    )
+      border-box;
+  border: 1px solid transparent;
 }
 
 .author {
-  font-size: 0.875rem;
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
   font-weight: 600;
   color: var(--ld-on-surface);
+  letter-spacing: -0.005em;
+}
+
+.metaSpacer {
+  flex: 1;
 }
 
 .time {
-  font-size: 0.75rem;
-  color: var(--ld-on-surface-variant);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--ld-tertiary);
+  background: color-mix(in srgb, var(--ld-tertiary) 12%, transparent);
+  padding: 0.25rem 0.625rem;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
 }
 
 .edited {
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   color: var(--ld-on-surface-variant);
-  font-style: italic;
+  background: color-mix(in srgb, var(--ld-on-surface-variant) 10%, transparent);
+  padding: 0.25rem 0.625rem;
+  border-radius: var(--radius-full);
+  font-style: normal;
 }
 
 .body {
   font-size: 0.9375rem;
   line-height: 1.65;
   color: var(--ld-on-surface);
-  margin-bottom: 0.625rem;
+  margin-bottom: 1rem;
   white-space: pre-wrap;
 }
 
 .actions {
   display: flex;
-  gap: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
-.actionBtn {
-  background: none;
-  border: none;
+.actionBtn,
+.deleteBtn {
+  background: var(--ld-surface-container-highest);
   color: var(--ld-on-surface-variant);
+  border: none;
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-full);
   font-family: inherit;
   font-size: 0.8125rem;
+  font-weight: 500;
   cursor: pointer;
-  padding: 0;
-  transition: color 0.15s ease;
+  box-shadow: inset 0 0 0 1px var(--ld-ghost);
+  transition: box-shadow 0.25s ease, color 0.15s ease, background 0.2s ease,
+    transform 0.2s ease;
 }
 
 .actionBtn:hover {
-  color: var(--ld-primary);
+  color: var(--ld-on-surface);
+  box-shadow:
+    inset 0 0 0 1px var(--ld-ghost-strong),
+    0 0 18px -6px var(--ld-glow-primary-soft);
+  transform: translateY(-1px);
 }
 
-.deleteBtn {
-  background: none;
-  border: none;
-  color: var(--ld-on-surface-variant);
-  font-family: inherit;
-  font-size: 0.8125rem;
-  cursor: pointer;
-  padding: 0;
-  transition: color 0.15s ease;
-}
-
-.deleteBtn:hover {
+.deleteBtn:hover:not(:disabled) {
   color: var(--ld-error);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--ld-error) 35%, transparent),
+    0 0 18px -6px color-mix(in srgb, var(--ld-error) 30%, transparent);
+  transform: translateY(-1px);
 }
 
 .deleteBtn:disabled {
@@ -81,16 +125,16 @@
 }
 
 .editForm {
-  margin-bottom: 0.625rem;
+  margin-bottom: 1rem;
 }
 
 .editTextarea {
   width: 100%;
-  padding: 0.625rem 0.75rem;
+  padding: 0.75rem 0.875rem;
   background: var(--ld-surface-container-highest);
   color: var(--ld-on-surface);
   border: none;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   font-family: inherit;
   font-size: 0.9375rem;
   line-height: 1.5;
@@ -103,17 +147,18 @@
   outline: none;
   box-shadow:
     inset 0 0 0 1px var(--ld-ghost-strong),
-    inset 0 -2px 0 var(--ld-tertiary);
+    inset 0 -2px 0 var(--ld-tertiary),
+    0 0 24px -10px var(--ld-glow-primary-soft);
 }
 
 .editActions {
   display: flex;
   gap: 0.5rem;
-  margin-top: 0.5rem;
+  margin-top: 0.625rem;
 }
 
 .saveBtn {
-  padding: 0.35rem 0.9rem;
+  padding: 0.4rem 1rem;
   background: var(--ld-gradient-primary);
   color: #ffffff;
   border: none;
@@ -124,6 +169,7 @@
   cursor: pointer;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08),
     0 6px 20px -10px var(--ld-glow-primary);
   transition: box-shadow 0.25s ease, background 0.2s ease, transform 0.2s ease;
 }
@@ -137,38 +183,34 @@
 }
 
 .cancelBtn {
-  padding: 0.35rem 0.9rem;
-  background: transparent;
+  padding: 0.4rem 1rem;
+  background: var(--ld-surface-container-highest);
   color: var(--ld-on-surface-variant);
   border: none;
   border-radius: var(--radius-full);
   font-family: inherit;
   font-size: 0.8125rem;
+  font-weight: 500;
   cursor: pointer;
-  box-shadow: inset 0 0 0 1px var(--ld-ghost-strong);
-  transition: color 0.15s ease, background 0.2s ease;
+  box-shadow: inset 0 0 0 1px var(--ld-ghost);
+  transition: box-shadow 0.25s ease, color 0.15s ease, transform 0.2s ease;
 }
 
 .cancelBtn:hover {
   color: var(--ld-on-surface);
-  background: rgba(255, 255, 255, 0.04);
+  box-shadow:
+    inset 0 0 0 1px var(--ld-ghost-strong),
+    0 0 18px -6px var(--ld-glow-primary-soft);
+  transform: translateY(-1px);
 }
 
 .replyForm {
-  margin-top: 0.875rem;
-  padding-left: 1.25rem;
-  background-image: linear-gradient(
-    180deg,
-    var(--ld-primary) 0%,
-    transparent 100%
-  );
-  background-size: 2px 100%;
-  background-repeat: no-repeat;
-  background-position: 0 0;
+  margin-top: 1rem;
 }
 
 .children {
-  margin-top: 1.125rem;
+  margin-top: 1.25rem;
+  margin-left: 1.25rem;
   padding-left: 1.5rem;
   display: flex;
   flex-direction: column;

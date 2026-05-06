@@ -1,0 +1,39 @@
+.page {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: 1rem 0 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.backLink {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--ld-on-surface-variant);
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.backLink:hover {
+  color: var(--ld-primary);
+  text-decoration: none;
+}
+
+.count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  padding: 0.2rem 0.65rem;
+  background: var(--ld-surface-container-highest);
+  color: var(--ld-on-surface-variant);
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+}

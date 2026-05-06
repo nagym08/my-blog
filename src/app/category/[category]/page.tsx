@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { getArticlesByCategory } from "@/lib/content";
 import { CATEGORIES, type Category } from "@/lib/content.schema";
-import { Card } from "@/components/ui";
+import { Card, PageHeader } from "@/components/ui";
 import { articleToCardProps } from "@/lib/articleCard";
 import styles from "./page.module.css";
 
@@ -43,7 +43,7 @@ export default async function CategoryPage({
 
   return (
     <section className={styles.section}>
-      <h1 className={styles.heading}>{label}</h1>
+      <PageHeader eyebrow="Category" title={label} />
       {articles.length === 0 ? (
         <p className={styles.empty}>No articles found.</p>
       ) : (

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getAllArticles, getSearchIndex } from "@/lib/content";
+import { PageHeader } from "@/components/ui";
 import { SearchBar } from "@/components/search/SearchBar";
 
 export const metadata: Metadata = {
@@ -17,11 +18,7 @@ export default async function SearchPage({
 
   return (
     <>
-      <h1
-        style={{ fontSize: "1.75rem", fontWeight: 700, marginBottom: "1.5rem" }}
-      >
-        Search
-      </h1>
+      <PageHeader eyebrow="Find articles" title="Search" />
       <SearchBar
         searchIndex={searchIndex}
         articles={articles}

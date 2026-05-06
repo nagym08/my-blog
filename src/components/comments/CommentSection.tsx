@@ -1,4 +1,5 @@
 import { eq, asc } from "drizzle-orm";
+import Link from "next/link";
 import { db } from "@/lib/db";
 import { auth } from "@/lib/auth";
 import { comments, users } from "@/db/schema";
@@ -63,16 +64,27 @@ export async function CommentSection({
 
   return (
     <section className={styles.section}>
-      <h2 className={styles.heading}>
-        Comments {tree.length > 0 && `(${tree.length})`}
-      </h2>
+      <div className={styles.headingGroup}>
+        <span className={styles.eyebrow}>Discussion</span>
+        <h2 className={styles.heading}>
+          Comments
+          {tree.length > 0 && (
+            <span className={styles.headingCount}>({tree.length})</span>
+          )}
+        </h2>
+      </div>
 
       {session?.user ? (
         <CommentForm articleSlug={articleSlug} />
       ) : (
-        <p className={styles.signInPrompt}>
-          Sign in to leave a comment.
-        </p>
+        <div className={styles.signInPrompt}>
+          <p className={styles.signInText}>
+            Join the conversation — sign in to leave a comment.
+          </p>
+          <Link href="/auth/signin" className={styles.signInCta}>
+            Sign in
+          </Link>
+        </div>
       )}
 
       <div className={styles.list}>
