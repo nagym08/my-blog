@@ -2,15 +2,15 @@
 
 import { useActionState, useState } from "react";
 import { Button } from "@/components/ui/Button/Button";
-import { deleteAccount } from "@/actions/account";
+import { deleteAccount, type DeleteAccountState } from "@/actions/account";
 import styles from "./DangerZone.module.css";
 
 export function DangerZone() {
   const [confirming, setConfirming] = useState(false);
-  const [, action, pending] = useActionState(async () => {
-    await deleteAccount();
-    return null;
-  }, null);
+  const [state, action, pending] = useActionState<DeleteAccountState, FormData>(
+    async () => deleteAccount(),
+    null
+  );
 
   return (
     <section className={styles.section} aria-labelledby="danger-heading">
@@ -29,6 +29,11 @@ export function DangerZone() {
           <p className={styles.confirmCopy}>
             Are you sure? Everything will be erased immediately.
           </p>
+          {state?.error && (
+            <p className={styles.error} role="alert">
+              {state.error}
+            </p>
+          )}
           <div className={styles.actions}>
             <Button
               type="button"

@@ -27,6 +27,8 @@ export async function toggleBookmark(articleSlug: string) {
     });
   }
 
+  revalidatePath("/account");
+  revalidatePath("/account/bookmarks");
   revalidatePath(`/articles/${articleSlug}`);
 }
 
@@ -99,5 +101,6 @@ export async function removeBookmark(articleSlug: string) {
     );
 
   revalidatePath("/account");
+  revalidatePath("/account/bookmarks");
   revalidatePath(`/articles/${articleSlug}`);
 }

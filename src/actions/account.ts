@@ -5,10 +5,20 @@ import { db } from "@/lib/db";
 import { auth, signOut } from "@/lib/auth";
 import { users } from "@/db/schema";
 
-export async function deleteAccount() {
-  const session = await auth();
-  if (!session?.user?.id) throw new Error("Not authenticated");
+export type DeleteAccountState = { error: string } | null;
 
-  await db.delete(users).where(eq(users.id, session.user.id));
+export async function deleteAccount(): Promise<DeleteAccountState> {
+  const session = await auth();
+  if (!session?.user?.id) {
+    return { error: "Your session has expired. Sign in again to delete your account." };
+  }
+
+  try {
+    await db.delete(users).where(eq(users.id, session.user.id));
+  } catch {
+    return { error: "Could not delete your account. Please try again." };
+  }
+
   await signOut({ redirectTo: "/" });
+  return null;
 }
