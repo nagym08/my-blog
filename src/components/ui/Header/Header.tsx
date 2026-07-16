@@ -2,6 +2,7 @@ import clsx from "clsx";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { ExpandableSearch } from "@/components/ui/ExpandableSearch/ExpandableSearch";
+import { ThemeToggle } from "@/components/ui/ThemeToggle/ThemeToggle";
 import type { SearchItem } from "@/components/search/useArticleSearch";
 import styles from "./Header.module.css";
 
@@ -44,6 +45,7 @@ export function Header({
 
         <div className={styles.actions}>
           {searchIndex && <ExpandableSearch searchIndex={searchIndex} />}
+          <ThemeToggle />
           {authContent}
         </div>
       </div>

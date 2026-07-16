@@ -44,10 +44,6 @@ const meta = {
   component: ExpandableSearch,
   parameters: {
     layout: "padded",
-    backgrounds: {
-      default: "luminous",
-      values: [{ name: "luminous", value: "#0e0e10" }],
-    },
   },
   args: {
     searchIndex: mockSearchIndex,
@@ -59,8 +55,7 @@ const meta = {
           display: "flex",
           justifyContent: "flex-end",
           padding: "1rem",
-          background: "rgba(11, 13, 23, 0.75)",
-          backdropFilter: "blur(12px)",
+          background: "var(--surface-overlay)",
         }}
       >
         <Story />

@@ -9,8 +9,6 @@ export const metadata: Metadata = {
 const providers = [
   { id: "github", name: "GitHub" },
   { id: "google", name: "Google" },
-  { id: "facebook", name: "Facebook" },
-  { id: "twitter", name: "X (Twitter)" },
 ];
 
 export default function SignInPage() {

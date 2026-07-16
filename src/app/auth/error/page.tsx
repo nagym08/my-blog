@@ -17,7 +17,7 @@ export default async function AuthErrorPage({
       <h1 style={{ fontSize: "2rem", marginBottom: "1rem" }}>
         Authentication Error
       </h1>
-      <p style={{ color: "var(--muted)", marginBottom: "1.5rem" }}>
+      <p style={{ color: "var(--text-secondary)", marginBottom: "1.5rem" }}>
         {error === "OAuthAccountNotLinked"
           ? "This email is already associated with another account. Try signing in with a different provider."
           : "Something went wrong during authentication. Please try again."}

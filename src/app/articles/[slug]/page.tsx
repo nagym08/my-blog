@@ -139,7 +139,10 @@ export default async function ArticlePage({
               remarkPlugins: [remarkGfm],
               rehypePlugins: [
                 rehypeSlug,
-                [rehypePrettyCode, { theme: "one-dark-pro" }],
+                [
+                  rehypePrettyCode,
+                  { theme: { light: "github-light", dark: "one-dark-pro" } },
+                ],
                 [rehypeAutolinkHeadings, { behavior: "wrap" }],
               ],
             },
@@ -157,7 +160,7 @@ export default async function ArticlePage({
           <BookmarkButton articleSlug={slug} initialBookmarked={bookmarked} />
         </div>
 
-        <Suspense fallback={<p style={{ color: "var(--muted)" }}>Loading comments...</p>}>
+        <Suspense fallback={<p style={{ color: "var(--text-secondary)" }}>Loading comments...</p>}>
           <CommentSection articleSlug={slug} />
         </Suspense>
       </footer>

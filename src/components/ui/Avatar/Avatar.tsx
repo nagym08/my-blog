@@ -1,5 +1,11 @@
 "use client";
 
+/* eslint-disable react-hooks/refs --
+   This component wires @floating-ui, whose stable callback refs
+   (refs.setReference / refs.setFloating) are meant to be read during render and
+   passed as `ref={}`. The react-hooks/refs rule flags that as a false positive
+   here; JSX doesn't allow per-attribute disable comments, so it's file-scoped. */
+
 import Image from "next/image";
 import { useRef, useState } from "react";
 import {

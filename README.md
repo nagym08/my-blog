@@ -1,6 +1,6 @@
 # my-blog
 
-A personal coding blog built on Next.js 16 and React 19. Articles are authored in MDX (see `content/`) and rendered with syntax-highlighted code via `rehype-pretty-code`. The app ships with authentication (NextAuth + Drizzle adapter on Postgres), full-text search powered by Fuse.js, tag-based categorization, and a custom "Luminous Depth" design system documented in [`DESIGN.md`](./DESIGN.md). UI components live under `src/components/ui/` and are developed in isolation with Storybook.
+A personal coding blog built on Next.js 16 and React 19. Articles are authored in MDX (see `content/`) and rendered with syntax-highlighted code via `rehype-pretty-code`. The app ships with authentication (NextAuth + Drizzle adapter on Postgres), full-text search powered by Fuse.js, tag-based categorization, and a custom "Crisp Technical" design system (clean, light-by-default with a light/dark toggle) documented in [`DESIGN.md`](./DESIGN.md). UI components live under `src/components/ui/` and are developed in isolation with Storybook.
 
 ## Tech Stack
 
@@ -67,7 +67,7 @@ src/
     articles/      
 content/            # MDX articles
 skills/             # TDD / design guidelines consumed by CLAUDE.md
-DESIGN.md           # "Luminous Depth" design system spec
+DESIGN.md           # "Crisp Technical" design system spec
 ```
 
 ## A Note on How This Was Built

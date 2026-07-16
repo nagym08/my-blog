@@ -3,27 +3,25 @@
   align-items: center;
   gap: 1rem;
   padding: 1.25rem 1.5rem;
-  background: var(--ld-surface-container);
+  background: var(--surface-raised);
   border-radius: var(--radius-lg);
-  box-shadow: inset 0 0 0 1px var(--ld-ghost);
+  box-shadow: inset 0 0 0 1px var(--border);
   text-decoration: none;
   color: inherit;
   transition:
-    background 0.2s ease,
     box-shadow 0.2s ease,
     transform 0.15s ease;
 }
 
 .card:hover {
-  background: var(--ld-surface-container-high);
   box-shadow:
-    inset 0 0 0 1px var(--ld-ghost-strong),
-    0 16px 36px -22px var(--ld-glow-ambient);
+    inset 0 0 0 1px var(--border-strong),
+    var(--shadow-md);
   text-decoration: none;
 }
 
 .card:focus-visible {
-  outline: 2px solid var(--ld-tertiary);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
 
@@ -35,8 +33,8 @@
   height: 2.5rem;
   flex-shrink: 0;
   border-radius: var(--radius-md);
-  background: var(--ld-glow-primary-soft);
-  color: var(--ld-primary);
+  background: transparent;
+  color: var(--accent);
 }
 
 .iconWrap > svg {
@@ -56,12 +54,12 @@
   font-family: var(--font-display);
   font-size: 1.05rem;
   font-weight: 600;
-  color: var(--ld-on-surface);
+  color: var(--text-primary);
 }
 
 .meta {
   font-size: 0.8125rem;
-  color: var(--ld-on-surface-variant);
+  color: var(--text-secondary);
 }
 
 .arrow {
@@ -70,7 +68,7 @@
   justify-content: center;
   width: 1.25rem;
   height: 1.25rem;
-  color: var(--ld-on-surface-variant);
+  color: var(--text-secondary);
   flex-shrink: 0;
   transition:
     color 0.15s ease,
@@ -83,6 +81,6 @@
 }
 
 .card:hover .arrow {
-  color: var(--ld-primary);
+  color: var(--accent);
   transform: translateX(2px);
 }

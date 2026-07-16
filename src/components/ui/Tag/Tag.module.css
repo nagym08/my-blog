@@ -39,6 +39,11 @@
   background: color-mix(in srgb, var(--tag-frontend) 15%, transparent);
 }
 
+.life {
+  color: var(--tag-life);
+  background: color-mix(in srgb, var(--tag-life) 15%, transparent);
+}
+
 .default {
   color: var(--tag-default);
   background: color-mix(in srgb, var(--tag-default) 15%, transparent);

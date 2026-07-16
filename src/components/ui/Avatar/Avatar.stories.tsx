@@ -27,10 +27,6 @@ const meta = {
   component: Avatar,
   parameters: {
     layout: "centered",
-    backgrounds: {
-      default: "luminous",
-      values: [{ name: "luminous", value: "#0e0e10" }],
-    },
   },
   argTypes: {
     size: { control: "select", options: ["sm", "md", "lg"] },
@@ -114,7 +110,7 @@ const label: CSSProperties = {
   fontSize: "0.7rem",
   letterSpacing: "0.12em",
   textTransform: "uppercase",
-  color: "rgba(232,232,234,0.45)",
+  color: "var(--text-secondary)",
   marginBottom: "0.75rem",
 };
 

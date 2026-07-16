@@ -3,20 +3,18 @@
   align-items: flex-start;
   gap: 1rem;
   padding: 1.25rem 1.5rem;
-  background: var(--ld-surface-container);
+  background: var(--surface-raised);
   border-radius: var(--radius-lg);
-  box-shadow: inset 0 0 0 1px var(--ld-ghost);
+  box-shadow: inset 0 0 0 1px var(--border);
   transition:
-    background 0.2s ease,
     opacity 0.2s ease,
     box-shadow 0.2s ease;
 }
 
 .item:hover {
-  background: var(--ld-surface-container-high);
   box-shadow:
-    inset 0 0 0 1px var(--ld-ghost-strong),
-    0 12px 32px -20px var(--ld-glow-ambient);
+    inset 0 0 0 1px var(--border-strong),
+    var(--shadow-md);
 }
 
 .pending {
@@ -40,7 +38,7 @@
 }
 
 .date {
-  color: var(--ld-on-surface-variant);
+  color: var(--text-secondary);
   font-size: 0.75rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -59,18 +57,18 @@
   font-family: var(--font-display);
   font-size: 1.0625rem;
   font-weight: 600;
-  color: var(--ld-on-surface);
+  color: var(--text-primary);
   margin: 0;
   line-height: 1.35;
   transition: color 0.15s ease;
 }
 
 .titleLink:hover .title {
-  color: var(--ld-primary);
+  color: var(--accent);
 }
 
 .excerpt {
-  color: var(--ld-on-surface-variant);
+  color: var(--text-secondary);
   font-size: 0.875rem;
   line-height: 1.55;
   margin: 0;
@@ -90,13 +88,13 @@
   gap: 0.4rem;
   padding: 0.45rem 0.85rem;
   background: transparent;
-  color: var(--ld-on-surface-variant);
+  color: var(--text-secondary);
   border: none;
   border-radius: var(--radius-full);
   cursor: pointer;
   font: inherit;
   font-size: 0.8125rem;
-  box-shadow: inset 0 0 0 1px var(--ld-ghost);
+  box-shadow: inset 0 0 0 1px var(--border);
   transition:
     color 0.15s ease,
     background 0.15s ease,
@@ -104,13 +102,13 @@
 }
 
 .removeButton:hover:not(:disabled) {
-  color: var(--ld-error);
-  background: rgba(255, 139, 139, 0.08);
-  box-shadow: inset 0 0 0 1px rgba(255, 139, 139, 0.35);
+  color: var(--danger);
+  background: color-mix(in srgb, var(--danger) 8%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--danger) 35%, transparent);
 }
 
 .removeButton:focus-visible {
-  outline: 2px solid var(--ld-tertiary);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 

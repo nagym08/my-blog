@@ -1,90 +1,195 @@
-# Design System Specification: Luminous Depth
+# Design System Specification: Crisp Technical
 
 ## 1. Overview & Creative North Star
-**The Creative North Star: "The Neon Observatory"**
 
-This design system is built for elite digital environments where code, craft, and creativity intersect. It rejects the sterility of standard flat design in favor of "Luminous Depth"—a visual language where information sits on deep, charcoal-toned layers, illuminated by internal glows rather than external light sources. 
+**The Creative North Star: "Quiet, Confident, Editorial."**
 
-We break the traditional "template" look through **intentional tonal layering** and **asymmetric focal points**. Instead of a rigid grid of boxes, we treat the interface as a dark canvas where elements emerge through glass-like transparency (Glassmorphism) and subtle, vibrant blurs. The goal is an editorial experience that feels premium, atmospheric, and highly intentional.
+This is a personal blog by a software developer. Coding is the flagship topic, but
+it also carries occasional personal writing (diabetes, sport, and how they connect).
+The design has to stay credible for code-heavy articles *and* feel warm enough for
+personal pieces — so it gets out of the way and lets the writing carry the
+personality.
+
+The visual language is **"Crisp Technical"**: a clean, modern, **light-by-default**
+surface with a single restrained accent, **hairline borders**, flat surfaces, and
+generous whitespace. Depth comes from tonal surfaces and one soft shadow — never
+from glows, blur, or gradients. Think Linear / Vercel / Stripe-docs: precise,
+legible, engineered.
+
+A **light/dark toggle** lives in the header. Light is the default; dark is a
+first-class, equally-designed counterpart. The look is **uniform across every
+topic** — there is no per-topic theming or accent.
+
+> This spec replaces the previous "Luminous Depth / Neon Observatory" dark-only
+> system. Glassmorphism, ambient glows, and gradient CTAs are gone.
 
 ---
 
 ## 2. Colors
-Our palette is anchored in a deep, nocturnal base (`#0e0e10`), accented by high-energy electric violets and deep-sea blues.
 
-### The Palette (Material Design Tokens)
-*   **Core Background:** `background: #0e0e10` | `surface: #0e0e10`
-*   **Vibrant Accents:** `primary: #a3a6ff` | `primary_dim: #6366f1` | `secondary: #c180ff` | `tertiary: #699cff`
-*   **The Container Hierarchy:**
-    *   `surface_container_low`: `#131315` (Deepest sections)
-    *   `surface_container`: `#19191c` (Standard cards)
-    *   `surface_container_highest`: `#262528` (Interactive elements/Hovers)
+The system defines **one semantic token vocabulary**, declared under `:root`
+(light) and overridden under `[data-theme="dark"]`. Components reference only these
+semantic tokens — never raw hex. Values below are the source of truth
+(`src/app/globals.css`); tune within these ranges but preserve the roles and keep
+text/background pairs at **WCAG AA**.
 
-### Design Directives
-*   **The "No-Line" Rule:** 1px solid borders for sectioning are strictly prohibited. Define boundaries through color shifts (e.g., a `surface_container` card on a `surface` background).
-*   **The Glass & Gradient Rule:** High-end CTAs and hero elements must utilize linear gradients (e.g., `primary` to `primary_dim`) to add "soul" to the interface.
-*   **Signature Textures:** Use semi-transparent surface colors with `backdrop-filter: blur(12px)` for navigation bars and floating modals to create the "frosted glass" effect seen in the reference material.
+### Light (`:root`)
+| Token | Value | Role |
+|---|---|---|
+| `--surface-base` | `#FFFFFF` | Page background |
+| `--surface-sunken` | `#F8F9FB` | Recessed sections / subtle bands |
+| `--surface-raised` | `#FFFFFF` | Cards, article surface |
+| `--surface-overlay` | `#FFFFFF` | Header, dropdowns, menus (opaque) |
+| `--text-primary` | `#16181D` | Body + headings |
+| `--text-secondary` | `#5B616E` | Meta, muted, captions |
+| `--text-on-accent` | `#FFFFFF` | Text on accent fills |
+| `--accent` | `#4F46E5` | Links, primary CTA, focus |
+| `--accent-hover` | `#4338CA` | Accent hover |
+| `--accent-subtle` | `#EEF0FE` | Tinted active/hover/tag backgrounds |
+| `--border` | `#E6E8EC` | Hairline borders, dividers |
+| `--border-strong` | `#D3D6DC` | Hover/focus borders |
+| `--danger` | `#DC2626` | Destructive actions |
+| `--danger-hover` | `#B91C1C` | Destructive hover |
+| `--shadow-sm` | `0 1px 2px rgba(16,24,40,.06), 0 1px 3px rgba(16,24,40,.05)` | Cards |
+| `--shadow-md` | `0 4px 12px rgba(16,24,40,.08)` | Overlays, hover |
+| `--code-bg` | `#F6F7F9` | Code block surface |
+| `color-scheme` | `light` | |
+
+### Dark (`[data-theme="dark"]`)
+| Token | Value |
+|---|---|
+| `--surface-base` | `#0E1116` |
+| `--surface-sunken` | `#0B0D12` |
+| `--surface-raised` | `#161A21` |
+| `--surface-overlay` | `#161A21` |
+| `--text-primary` | `#E6E8EC` |
+| `--text-secondary` | `#97A0AE` |
+| `--text-on-accent` | `#FFFFFF` |
+| `--accent` | `#8C90FF` |
+| `--accent-hover` | `#A5A8FF` |
+| `--accent-subtle` | `#20233A` |
+| `--border` | `#242A34` |
+| `--border-strong` | `#2F3743` |
+| `--danger` | `#F87171` |
+| `--danger-hover` | `#FCA5A5` |
+| `--shadow-sm` | `0 1px 2px rgba(0,0,0,.4)` |
+| `--shadow-md` | `0 6px 16px rgba(0,0,0,.45)` |
+| `--code-bg` | `#12151B` |
+| `color-scheme` | `dark` |
+
+### Category tag colors
+The `--tag-*` palette (typescript/backend/api/css-design/dev-growth/frontend/life/
+default) tints tags for scannability. Backgrounds use a pale `color-mix` tint of
+the hue; **tag text must use a dark-enough stop of the same hue to pass AA on the
+light tint** (don't render the full-saturation hue as text on its own pale tint).
 
 ---
 
 ## 3. Typography
-The system uses a dual-font strategy to balance editorial authority with technical precision.
 
-*   **Display & Headlines (Manrope):** A geometric sans-serif that provides a modern, high-end feel. Use `display-lg` (3.5rem) for hero statements to command attention.
-*   **Body & Labels (Inter):** A hyper-legible sans-serif designed for UI. Used for all functional text, ensuring clarity against dark backgrounds.
+Dual-font strategy, unchanged from before — it already fits the new system.
 
-### Typographic Hierarchy
-*   **Display (Manrope):** Bold, assertive. Use for high-impact editorial moments.
-*   **Headline (Manrope):** Clean and structured. For primary section titles.
-*   **Title (Inter):** Medium-weight, used for card headings and navigation.
-*   **Body (Inter):** Regular weight. Optimized for long-form reading with generous line height (1.5x - 1.6x).
-*   **Label (Inter):** Small, uppercase, or high-tracking styles for metadata (e.g., Tags).
+- **Display & Headings — Manrope** (`--font-display`): geometric sans for hero
+  statements and section/card titles. Clean and structured.
+- **Body & UI — Inter** (`--font-sans`): hyper-legible for long-form reading and
+  all functional text. Body line-height `1.6`.
+
+Weights: regular for body, medium/semibold for titles and labels. Use size and
+weight — not color tricks — to build hierarchy. Metadata (dates, tags) uses small,
+higher-tracking labels in `--text-secondary`.
 
 ---
 
 ## 4. Elevation & Depth
-In this system, elevation is conveyed through **Tonal Layering** and **Ambient Glows** rather than traditional drop shadows.
 
-*   **The Layering Principle:** Depth is achieved by stacking tiers. An active card uses `surface_container_highest` to sit "above" a section using `surface_container`.
-*   **Ambient Shadows:** For floating elements, shadows must be ultra-diffused. Use a 40px-60px blur at 8% opacity, using a tinted color (derived from `primary` or `secondary`) instead of pure black.
-*   **The "Ghost Border" Fallback:** If a border is required for accessibility, use `outline_variant` at 15% opacity. Never use 100% opaque borders.
-*   **Inner Glows:** To replicate the "Sign In" button aesthetic, use an `inner-shadow` or a subtle `linear-gradient` border that mimics a light-catching edge.
+Depth is **tonal + one soft shadow**. No glows, no blur, no gradients.
+
+- **Tonal layering:** separate regions with `--surface-*` tiers and hairline
+  `--border`, not with heavy shadows.
+- **Shadows:** cards rest at `--shadow-sm`; floating elements (dropdowns, hover
+  lift) use `--shadow-md`. Never stack multiple glow shadows.
+- **Borders are welcome:** a `1px solid var(--border)` hairline is the primary way
+  to define a boundary. (This reverses the old "No-Line Rule".)
+- **Focus:** a visible focus ring in `--accent` (e.g. `box-shadow: 0 0 0 2px
+  var(--accent-subtle), 0 0 0 3px var(--accent)` or `outline`), never removed.
 
 ---
 
 ## 5. Components
 
 ### Buttons
-*   **Primary (The Signature):** A deep gradient of `primary` to `primary_dim`. It features a subtle outer glow using the same hue. Roundedness: `full`.
-*   **Secondary/Ghost:** No background fill. Uses a `Ghost Border` with `primary` text.
-*   **Interaction:** On hover, the internal glow should intensify (increase brightness of the gradient).
+- **Primary:** solid `--accent` fill, `--text-on-accent` label; hover →
+  `--accent-hover`. Radius `--radius-full` or `--radius-md` (consistent per app).
+  No gradient, no glow.
+- **Secondary / Ghost:** transparent fill, `1px solid var(--border)` (hover
+  `--border-strong`), `--text-primary` label.
+- **Destructive:** solid `--danger` → `--danger-hover`.
 
 ### Cards & Lists
-*   **The Card Rule:** Forbid divider lines. Use vertical white space (`1.5rem` to `2rem`) to separate content.
-*   **Card Styling:** Use `surface_container` with a `DEFAULT` (1rem) corner radius. Elements inside the card should feel "integrated" rather than boxed in.
+- `--surface-raised` background, `1px solid var(--border)`, `--radius-lg` corners,
+  `--shadow-sm`. Hover may lift to `--shadow-md` and `--border-strong`.
+- Separate content with whitespace (`1.5rem`–`2rem`) and hairline dividers.
 
-### Chips (Tags)
-*   Used for categorization (e.g., "TypeScript", "Backend").
-*   Style: `surface_variant` background with `on_surface_variant` text.
-*   Shape: `md` (1.5rem) roundedness for a pill-like, friendly appearance.
+### Chips / Tags
+- Pale `--accent-subtle` (or the category `--tag-*` tint) background with
+  same-hue dark text. Pill shape (`--radius-full` / `md`).
 
 ### Input Fields
-*   **Container:** `surface_container_highest`. 
-*   **Indicator:** Instead of a full border, use a 2px bottom accent in `tertiary` when focused.
-*   **Typography:** Labels use `label-md` in `on_surface_variant`.
+- `--surface-raised` (or `--surface-sunken`) background, `1px solid var(--border)`,
+  `--radius-md`. On focus: `--border-strong` or `--accent` border + accent focus
+  ring. Labels in `--text-secondary`.
+
+### Header / Overlays
+- Opaque `--surface-overlay`, `border-bottom: 1px solid var(--border)`. **No
+  backdrop-filter / blur.**
+
+### Code blocks
+- `--code-bg` surface, hairline border, no glow. Syntax highlighting is
+  dual-theme (Shiki `github-light` in light, `one-dark-pro` in dark), selected off
+  the root `[data-theme]`.
 
 ---
 
-## 6. Do's and Don'ts
+## 6. Theming & the toggle
 
-### Do:
-*   **DO** use varying shades of dark charcoal to create hierarchy.
-*   **DO** use "vibrant purples and blues" sparingly for "glow" moments—think of them as light sources in a dark room.
-*   **DO** allow for generous negative space. High-end design breathes.
-*   **DO** ensure all text passes WCAG AA contrast ratios against the dark surfaces.
+- **Mechanism:** `data-theme` attribute on `<html>`. Light is the attribute-less
+  default (`:root`); dark is `[data-theme="dark"]`.
+- **Persistence & no flash:** a small blocking inline script in `layout.tsx` sets
+  `data-theme` from `localStorage.theme` (falling back to `prefers-color-scheme`)
+  before first paint. `<html>` carries `suppressHydrationWarning`.
+- **Control:** `ThemeToggle` (a `"use client"` component) in the header flips the
+  attribute and persists the choice.
 
-### Don't:
-*   **DON'T** use pure black (`#000000`) for surfaces; it kills the depth and looks "flat."
-*   **DON'T** use 1px solid white or grey borders to separate sections. It creates visual noise.
-*   **DON'T** use standard, high-opacity drop shadows. They feel dated in a glass-morphic system.
-*   **DON'T** crowd the UI. If in doubt, add more padding.
+---
+
+## 7. Do's and Don'ts
+
+### Do
+- **DO** design light and dark as equals — check contrast in both.
+- **DO** use hairline `--border` and tonal `--surface-*` tiers to define structure.
+- **DO** keep one accent; use it deliberately for links, primary actions, focus.
+- **DO** give the UI room to breathe — when in doubt, add whitespace.
+- **DO** reference semantic tokens only; never hardcode hex in component CSS.
+
+### Don't
+- **DON'T** use `backdrop-filter`/blur, ambient glow shadows, or gradient fills.
+- **DON'T** stack multiple shadows to fake elevation.
+- **DON'T** introduce per-topic accent colors — the look is uniform.
+- **DON'T** ship text that fails WCAG AA on its surface (watch tag tints).
+
+---
+
+## 8. Adding a category (checklist)
+
+Categories are single-source in `src/lib/content.schema.ts`; display metadata lives
+in `src/lib/categories.ts`.
+
+1. Add the slug to `CATEGORIES` in `src/lib/content.schema.ts`.
+2. Add its entry to `CATEGORY_META` in `src/lib/categories.ts`
+   (`navLabel`, `fullLabel`, `color`, optional `description`).
+3. If it needs a new tag color: add `--tag-<name>` in `globals.css`, the union
+   member in `Tag.tsx`, and the `.<name>` class in `Tag.module.css`.
+4. Create `content/<slug>/` and add `.mdx` posts.
+
+Navigation, search labels, the `/category/<slug>` route, and card tag colors all
+update automatically from `CATEGORY_META`.

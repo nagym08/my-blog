@@ -4,6 +4,7 @@ import { Header } from "@/components/ui/Header/Header";
 import { AuthButton } from "@/components/layout/AuthButton";
 import { Footer } from "@/components/layout/Footer";
 import { getSearchIndex } from "@/lib/content";
+import { NAV_ITEMS } from "@/lib/categories";
 import "./globals.css";
 
 const inter = Inter({
@@ -18,12 +19,9 @@ const manrope = Manrope({
   display: "swap",
 });
 
-const navItems = [
-  { label: "Coding", href: "/category/coding" },
-  { label: "Projects", href: "/category/project" },
-  { label: "Dev Growth", href: "/category/developer-growth" },
-  { label: "About", href: "/about" },
-];
+const navItems = [...NAV_ITEMS, { label: "About", href: "/about" }];
+
+const themeScript = `(function(){try{var t=localStorage.getItem('theme');if(!t)t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -57,7 +55,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${manrope.variable}`}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${manrope.variable}`}
+      suppressHydrationWarning
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body>
         <Header
           navItems={navItems}

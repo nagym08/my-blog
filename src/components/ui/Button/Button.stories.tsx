@@ -41,10 +41,6 @@ const meta = {
   component: Button,
   parameters: {
     layout: "centered",
-    backgrounds: {
-      default: "luminous",
-      values: [{ name: "luminous", value: "#0e0e10" }],
-    },
   },
   argTypes: {
     variant: {
@@ -179,7 +175,7 @@ const label: CSSProperties = {
   fontSize: "0.7rem",
   letterSpacing: "0.12em",
   textTransform: "uppercase",
-  color: "rgba(232,232,234,0.55)",
+  color: "var(--text-secondary)",
   marginBottom: "0.5rem",
 };
 

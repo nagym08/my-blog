@@ -13,7 +13,7 @@ export default function AboutPage() {
         Welcome to my blog. I write about software engineering, side projects,
         and lessons learned along the way.
       </p>
-      <p style={{ color: "var(--muted)" }}>More content coming soon.</p>
+      <p style={{ color: "var(--text-secondary)" }}>More content coming soon.</p>
     </div>
   );
 }

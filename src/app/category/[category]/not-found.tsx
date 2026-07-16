@@ -6,7 +6,7 @@ export default function CategoryNotFound() {
       <h1 style={{ fontSize: "2rem", marginBottom: "1rem" }}>
         Category Not Found
       </h1>
-      <p style={{ color: "var(--muted)", marginBottom: "1.5rem" }}>
+      <p style={{ color: "var(--text-secondary)", marginBottom: "1.5rem" }}>
         This category doesn&apos;t exist.
       </p>
       <Link href="/">Back to home</Link>
