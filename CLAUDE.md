@@ -27,19 +27,19 @@ All `db:*` scripts read `DATABASE_URL` from `.env.local` via `dotenv-cli`.
 **Next.js 16 App Router + React 19** blog with MDX content, Postgres-backed auth and engagement features.
 
 ### Content pipeline
-MDX articles live in `content/{category}/` where categories are `project`, `coding`, `developer-growth`. Frontmatter is validated by Zod (`src/lib/content.schema.ts`). The content layer (`src/lib/content.ts`) reads files from disk, parses with `gray-matter`, and exposes cached functions (`getAllArticles`, `getArticleBySlug`, `getArticlesByCategory`, `getArticlesBySeries`, `getSearchIndex`). Draft articles are excluded in production.
+MDX articles live in `content/{category}/` where categories are `project`, `coding`, `developer-growth`, `life` (diabetes/sport/personal). Category slugs are single-source in `src/lib/content.schema.ts`; display metadata (nav labels, tag color, description) lives in `src/lib/categories.ts` (`CATEGORY_META`/`NAV_ITEMS`), which nav, search, and category pages all import. Frontmatter is validated by Zod (`src/lib/content.schema.ts`). The content layer (`src/lib/content.ts`) reads files from disk, parses with `gray-matter`, and exposes cached functions (`getAllArticles`, `getArticleBySlug`, `getArticlesByCategory`, `getArticlesBySeries`, `getSearchIndex`). Draft articles are excluded in production.
 
 ### Database
 Drizzle ORM with Postgres. Schema at `src/db/schema.ts`, migrations in `src/db/migrations/`. Tables: Auth.js tables (`user`, `account`, `session`, `verificationToken`) plus application tables (`comment` with threaded replies, `article_view_count`, `bookmark`, `article_reaction`). DB connection via `src/lib/db.ts`.
 
 ### Auth
-NextAuth v5 (`src/lib/auth.ts`) with GitHub, Google, Facebook, Twitter providers. Drizzle adapter. Database sessions. User roles stored in `user.role` column and exposed on the session object. Custom sign-in page at `/auth/signin`.
+NextAuth v5 (`src/lib/auth.ts`) with GitHub and Google providers. Drizzle adapter. Database sessions. User roles stored in `user.role` column and exposed on the session object. Custom sign-in page at `/auth/signin`.
 
 ### Search
 Client-side via Fuse.js. `getSearchIndex()` provides the dataset; search UI at `/search`.
 
 ### UI & testing
-Design system ("Luminous Depth") is specified in `DESIGN.md` — dark theme with tonal layering, no borders, glassmorphism. CSS Modules for styling. Components in `src/components/ui/` have co-located `.stories.tsx` files. Tests run through Vitest with Storybook's vitest addon in headless Playwright browser mode (`vitest.config.ts`).
+Design system ("Crisp Technical") is specified in `DESIGN.md` — clean, light-by-default with a light/dark toggle (`data-theme` on `<html>`; a no-FOUC inline script in `layout.tsx` sets it before paint, `ThemeToggle` flips it), one semantic CSS-variable token set (light in `:root`, dark under `[data-theme="dark"]`), hairline borders, flat surfaces, single soft shadow — no glassmorphism/glow/gradients. CSS Modules for styling. Components in `src/components/ui/` have co-located `.stories.tsx` files. Tests run through Vitest with Storybook's vitest addon in headless Playwright browser mode (`vitest.config.ts`).
 
 ### Routes
 - `/` — home (article list)

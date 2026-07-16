@@ -2,9 +2,7 @@
   border-top: 1px solid var(--border);
   padding: 1rem 0;
   margin-top: auto;
-  background: rgba(11, 13, 23, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: var(--surface-overlay);
 }
 
 .container {
@@ -14,7 +12,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: var(--muted);
+  color: var(--text-secondary);
   font-size: 0.875rem;
 }
 
@@ -25,12 +23,12 @@
 }
 
 .icons a {
-  color: var(--muted);
+  color: var(--text-secondary);
   display: flex;
   align-items: center;
 }
 
 .icons a:hover {
-  color: var(--foreground);
+  color: var(--text-primary);
   text-decoration: none;
 }

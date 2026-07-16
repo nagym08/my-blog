@@ -8,6 +8,7 @@ export type TagColor =
   | "css-design"
   | "dev-growth"
   | "frontend"
+  | "life"
   | "default";
 
 export interface TagProps {

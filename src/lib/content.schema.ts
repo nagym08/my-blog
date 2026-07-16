@@ -1,6 +1,11 @@
 import { z } from "zod";
 
-export const CATEGORIES = ["project", "coding", "developer-growth"] as const;
+export const CATEGORIES = [
+  "coding",
+  "project",
+  "developer-growth",
+  "life",
+] as const;
 export type Category = (typeof CATEGORIES)[number];
 
 export const frontmatterSchema = z.object({

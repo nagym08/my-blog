@@ -5,7 +5,7 @@ import Link from "next/link";
 import { format } from "date-fns";
 import { Tag } from "@/components/ui/Tag/Tag";
 import { removeBookmark, type MyBookmark } from "@/actions/bookmarks";
-import { categoryToColor } from "@/lib/articleCard";
+import { CATEGORY_META } from "@/lib/categories";
 import styles from "./BookmarkListItem.module.css";
 
 const TrashIcon = () => (
@@ -39,7 +39,7 @@ export function BookmarkListItem({ bookmark }: { bookmark: MyBookmark }) {
         <div className={styles.tagRow}>
           <Tag
             label={article.frontmatter.category}
-            color={categoryToColor[article.frontmatter.category] ?? "default"}
+            color={CATEGORY_META[article.frontmatter.category]?.color ?? "default"}
           />
           <span className={styles.date}>
             {format(article.frontmatter.publishedAt, "MMM d, yyyy")}

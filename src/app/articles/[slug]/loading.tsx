@@ -5,7 +5,7 @@ export default function ArticleLoading() {
         style={{
           height: "2.5rem",
           width: "70%",
-          background: "var(--surface)",
+          background: "var(--surface-raised)",
           borderRadius: "0.25rem",
           marginBottom: "1rem",
         }}
@@ -14,7 +14,7 @@ export default function ArticleLoading() {
         style={{
           height: "1rem",
           width: "30%",
-          background: "var(--surface)",
+          background: "var(--surface-raised)",
           borderRadius: "0.25rem",
           marginBottom: "2rem",
         }}
@@ -25,7 +25,7 @@ export default function ArticleLoading() {
           style={{
             height: "1rem",
             width: `${width}%`,
-            background: "var(--surface)",
+            background: "var(--surface-raised)",
             borderRadius: "0.25rem",
             marginBottom: "0.75rem",
           }}

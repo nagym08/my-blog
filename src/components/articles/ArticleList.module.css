@@ -9,6 +9,6 @@
 }
 
 .empty {
-  color: var(--muted);
+  color: var(--text-secondary);
   padding: 2rem 0;
 }

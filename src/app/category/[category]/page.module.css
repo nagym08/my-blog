@@ -9,6 +9,6 @@
 }
 
 .empty {
-  color: var(--ld-on-surface-variant);
+  color: var(--text-secondary);
   padding: 2rem 0;
 }

@@ -12,7 +12,7 @@ export default function ArticleError({
       <h1 style={{ fontSize: "2rem", marginBottom: "1rem" }}>
         Something went wrong
       </h1>
-      <p style={{ color: "var(--muted)", marginBottom: "1.5rem" }}>
+      <p style={{ color: "var(--text-secondary)", marginBottom: "1.5rem" }}>
         {error.message || "An unexpected error occurred."}
       </p>
       <button

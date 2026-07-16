@@ -1,15 +1,10 @@
 import { notFound } from "next/navigation";
 import { getArticlesByCategory } from "@/lib/content";
 import { CATEGORIES, type Category } from "@/lib/content.schema";
+import { CATEGORY_META } from "@/lib/categories";
 import { Card, PageHeader } from "@/components/ui";
 import { articleToCardProps } from "@/lib/articleCard";
 import styles from "./page.module.css";
-
-const CATEGORY_LABELS: Record<Category, string> = {
-  coding: "Coding",
-  project: "Projects",
-  "developer-growth": "Developer Growth",
-};
 
 export function generateStaticParams() {
   return CATEGORIES.map((category) => ({ category }));
@@ -21,10 +16,10 @@ export async function generateMetadata({
   params: Promise<{ category: string }>;
 }) {
   const { category } = await params;
-  const label = CATEGORY_LABELS[category as Category];
-  if (!label) return { title: "Not Found" };
+  const meta = CATEGORY_META[category as Category];
+  if (!meta) return { title: "Not Found" };
 
-  return { title: label };
+  return { title: meta.fullLabel };
 }
 
 export default async function CategoryPage({
@@ -39,11 +34,15 @@ export default async function CategoryPage({
   }
 
   const articles = getArticlesByCategory(category as Category);
-  const label = CATEGORY_LABELS[category as Category];
+  const meta = CATEGORY_META[category as Category];
 
   return (
     <section className={styles.section}>
-      <PageHeader eyebrow="Category" title={label} />
+      <PageHeader
+        eyebrow="Category"
+        title={meta.fullLabel}
+        description={meta.description}
+      />
       {articles.length === 0 ? (
         <p className={styles.empty}>No articles found.</p>
       ) : (

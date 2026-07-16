@@ -9,7 +9,7 @@
   font-size: 0.75rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--ld-on-surface-variant);
+  color: var(--text-secondary);
   margin: 0;
 }
 
@@ -24,7 +24,7 @@
   font-family: var(--font-display);
   font-size: 2rem;
   font-weight: 700;
-  color: var(--ld-on-surface);
+  color: var(--text-primary);
   margin: 0;
   line-height: 1.15;
 }
@@ -35,7 +35,7 @@
 }
 
 .description {
-  color: var(--ld-on-surface-variant);
+  color: var(--text-secondary);
   font-size: 0.9375rem;
   line-height: 1.6;
   margin: 0.25rem 0 0;

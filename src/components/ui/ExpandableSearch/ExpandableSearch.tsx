@@ -6,17 +6,13 @@ import clsx from "clsx";
 import { SearchInput } from "@/components/ui/SearchInput/SearchInput";
 import { useArticleSearch } from "@/components/search/useArticleSearch";
 import type { SearchItem } from "@/components/search/useArticleSearch";
+import { CATEGORY_META } from "@/lib/categories";
+import type { Category } from "@/lib/content.schema";
 import styles from "./ExpandableSearch.module.css";
 
 export interface ExpandableSearchProps {
   searchIndex: SearchItem[];
 }
-
-const CATEGORY_LABELS: Record<string, string> = {
-  coding: "Coding",
-  project: "Projects",
-  "developer-growth": "Dev Growth",
-};
 
 export function ExpandableSearch({ searchIndex }: ExpandableSearchProps) {
   const [expanded, setExpanded] = useState(false);
@@ -184,7 +180,8 @@ export function ExpandableSearch({ searchIndex }: ExpandableSearchProps) {
                         <span className={styles.resultTitle}>{item.title}</span>
                         <span className={styles.resultMeta}>
                           <span className={styles.category}>
-                            {CATEGORY_LABELS[item.category] ?? item.category}
+                            {CATEGORY_META[item.category as Category]?.navLabel ??
+                              item.category}
                           </span>
                           <span className={styles.excerpt}>{item.excerpt}</span>
                         </span>

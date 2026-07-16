@@ -12,7 +12,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  color: var(--ld-on-surface-variant);
+  color: var(--text-secondary);
   font-size: 0.8125rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -21,7 +21,7 @@
 }
 
 .backLink:hover {
-  color: var(--ld-primary);
+  color: var(--accent);
   text-decoration: none;
 }
 
@@ -31,8 +31,8 @@
   justify-content: center;
   min-width: 2rem;
   padding: 0.2rem 0.65rem;
-  background: var(--ld-surface-container-highest);
-  color: var(--ld-on-surface-variant);
+  background: var(--surface-sunken);
+  color: var(--text-secondary);
   border-radius: var(--radius-full);
   font-size: 0.875rem;
   font-variant-numeric: tabular-nums;

@@ -56,10 +56,6 @@ const meta = {
   component: Header,
   parameters: {
     layout: "fullscreen",
-    backgrounds: {
-      default: "luminous",
-      values: [{ name: "luminous", value: "#0e0e10" }],
-    },
   },
   args: {
     logo: "S&S",
